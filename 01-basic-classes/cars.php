@@ -10,13 +10,7 @@
  * Objekt = Object
  */
 
-// Klasser skrivs alltid i singular form och med UpperCamelCase / PascalCase
-class Car {
-	public $manufacturer = 'N/A';
-	public $model = 'N/A';
-	public $year = 'N/A';
-	public $awd = false;
-}
+require('includes/Car.php');
 
 $cars = [];
 
@@ -46,20 +40,14 @@ $car4 = [
 array_push($cars, 42);
 array_push($cars, $car4);
 
-function getCarInfo($car) {
-	if ($car->awd) {
-		$awd = "has AWD";
-	} else {
-		$awd = "does not have AWD";
-	}
-
-	return "{$car->manufacturer} {$car->model} is of model year {$car->year} and {$awd}.<br>\n";
-}
-
 foreach ($cars as $car) {
 	if (is_object($car)) {
-		echo getCarInfo($car);
+
+		echo $car->getCarInfo();
+
 	} else {
+
 		echo "That is not a car(-ish).<br>\n";
+
 	}
 }
