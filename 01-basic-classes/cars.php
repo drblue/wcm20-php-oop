@@ -18,21 +18,36 @@ class Car {
 	public $awd = false;
 }
 
+$cars = [];
+
 $car1 = new Car();
 $car1->manufacturer = "Tesla";
-echo "Manufacturer of car 1 is {$car1->manufacturer}.<br>\n";
+$car1->model = "Model 3";
+$car1->year = 2020;
+$car1->awd = true;
+array_push($cars, $car1);
 
 $car2 = new Car();
-echo "Manufacturer of car 2 is {$car2->manufacturer}.<br>\n";
+$car2->manufacturer = "Nissan";
+$car2->model = "Qashqai";
+$car2->year = 2019;
+array_push($cars, $car2);
 
-echo "<pre>";
+$car3 = new Car();
+$car3->manufacturer = "Kia";
+$car3->model = "Mia";
+array_push($cars, $car3);
 
-echo "Car 1:\n";
-var_dump($car1);
-echo "\n";
+function getCarInfo($car) {
+	if ($car->awd) {
+		$awd = "has AWD";
+	} else {
+		$awd = "does not have AWD";
+	}
 
-echo "Car 2:\n";
-var_dump($car2);
-echo "\n";
+	return "{$car->manufacturer} {$car->model} is of model year {$car->year} and {$awd}.<br>\n";
+}
 
-echo "</pre>";
+foreach ($cars as $car) {
+	echo getCarInfo($car);
+}
