@@ -38,6 +38,14 @@ $car3->manufacturer = "Kia";
 $car3->model = "Mia";
 array_push($cars, $car3);
 
+$car4 = [
+	'manufacturer' => 'Batmobile',
+	'model' => '3000',
+];
+
+array_push($cars, 42);
+array_push($cars, $car4);
+
 function getCarInfo($car) {
 	if ($car->awd) {
 		$awd = "has AWD";
@@ -49,5 +57,9 @@ function getCarInfo($car) {
 }
 
 foreach ($cars as $car) {
-	echo getCarInfo($car);
+	if (is_object($car)) {
+		echo getCarInfo($car);
+	} else {
+		echo "That is not a car(-ish).<br>\n";
+	}
 }
