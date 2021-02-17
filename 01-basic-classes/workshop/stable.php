@@ -7,9 +7,6 @@ echo "<h1>Stallet</h1>";
 $horses = [];
 
 $horse = new Horse("Pelle", "Ardenner", "rosa"); // Horse#1, will execute Horse->__construct()
-$horse->name = "Pelle";
-$horse->breed = "Ardenner";
-$horse->color = "rosa";
 $horse->setHeight(170);
 $horse->weight = 650;
 $horse->sex = "vallak";
