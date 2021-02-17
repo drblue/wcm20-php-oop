@@ -8,12 +8,16 @@ $pelle = new Horse();
 $pelle->name = "Pelle";
 $pelle->breed = "Ardenner";
 $pelle->color = "rosa";
+$pelle->height = 170;
+$pelle->weight = 650;
+$pelle->sex = "vallak";
 
-echo "<p>{$pelle->name} är en {$pelle->color} {$pelle->breed}.</p>";
+echo "<p>" . $pelle->getInfo() . "</p>"; // $this === $pelle
 
 $kalle = new Horse();
 $kalle->name = "Kalle";
 $kalle->breed = "C-ponny";
 $kalle->color = "turkos";
+$kalle->sex = "hingst";
 
-echo "<p>{$kalle->name} är en {$kalle->color} {$kalle->breed}.</p>";
+echo "<p>" . $kalle->getInfo() . "</p>"; // $this === $kalle
