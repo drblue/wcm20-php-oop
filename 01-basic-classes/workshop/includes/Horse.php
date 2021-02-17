@@ -7,7 +7,7 @@ class Horse {
 	public $height;
 	public $weight;
 	public $sex;
-	public $owner;
+	public $owners = [];
 
 	public function __construct($name, $breed, $color, $height = null, $weight = null, $sex = null) {
 		// this will always be executed when
@@ -49,21 +49,21 @@ class Horse {
 		return true;
 	}
 
-	/** owner */
-	public function getOwner() {
-		return $this->owner;
+	/** owners */
+	public function getOwners() {
+		return implode(", ", $this->owners);
 	}
 
-	public function hasOwner() {
-		return (!empty($this->owner)); // will return TRUE if owner is NOT empty
+	public function hasOwners() {
+		return (!empty($this->owners)); // will return TRUE if owner is NOT empty
 	}
 
-	public function setOwner($name) {
+	public function addOwner($name) {
 		if (empty($name)) {
 			return false;
 		}
 
-		$this->owner = $name;
+		array_push($this->owners, $name);
 		return true;
 	}
 
@@ -102,8 +102,8 @@ class Horse {
 	public function getInfo() {
 		$info = "<h2>{$this->name}</h2>";
 
-		if ($this->hasOwner()) {
-			$info .= "<p>Owner: {$this->getOwner()}</p>";
+		if ($this->hasOwners()) {
+			$info .= "<p>Owner: {$this->getOwners()}</p>";
 		} else {
 			$info .= "<p>This horse is for sale! <strong>BUY NAOW!!</strong></p>";
 		}
