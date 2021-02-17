@@ -9,6 +9,16 @@ class Horse {
 	public $sex = "unknown";
 	public $owner;
 
+	public function __construct($name, $breed, $color) {
+		// this will always be executed when
+		// a new instance of this class is created
+		// (ex. when we run `new Horse()`)
+
+		$this->name = $name;
+		$this->breed = $breed;
+		$this->color = $color;
+	}
+
 	public function getInfo() {
 		return "
 			<h2>{$this->name}</h2>
