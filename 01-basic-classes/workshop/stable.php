@@ -4,24 +4,33 @@ require('includes/Horse.php');
 
 echo "<h1>Stallet</h1>";
 
-$pelle = new Horse();
-$pelle->name = "Pelle";
-$pelle->breed = "Ardenner";
-$pelle->color = "rosa";
-$pelle->height = 170;
-$pelle->weight = 650;
-$pelle->sex = "vallak";
+$horses = [];
 
-echo "<p>" . $pelle->getInfo() . "</p>"; // $this === $pelle
+$horse = new Horse(); // Horse#1
+$horse->name = "Pelle";
+$horse->breed = "Ardenner";
+$horse->color = "rosa";
+$horse->height = 170;
+$horse->weight = 650;
+$horse->sex = "vallak";
+$horse->setOwner("Kajsa");
+array_push($horses, $horse);
 
-$kalle = new Horse();
-$kalle->name = "Kalle";
-$kalle->breed = "C-ponny";
-$kalle->color = "turkos";
-$kalle->sex = "hingst";
+$horse = new Horse(); // #2
+$horse->name = "Kalle";
+$horse->breed = "C-ponny";
+$horse->color = "turkos";
+$horse->sex = "hingst";
+$horse->setOwner("Pluto");
+array_push($horses, $horse);
 
-echo "<p>" . $kalle->getInfo() . "</p>"; // $this === $kalle
+$horse = new Horse(); // #3
+array_push($horses, $horse);
 
-$anonymous = new Horse();
+foreach ($horses as $horse) {
+	echo "<p>" . $horse->getInfo() . "</p>"; // $this === $horse
+}
 
-echo "<p>" . $anonymous->getInfo() . "</p>"; // $this === $anonymous
+echo "<pre>";
+var_dump($horses);
+echo "</pre>";

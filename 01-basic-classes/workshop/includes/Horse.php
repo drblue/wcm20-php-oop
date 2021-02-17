@@ -7,10 +7,12 @@ class Horse {
 	public $height = 'n/a';
 	public $weight = 'n/a';
 	public $sex = "unknown";
+	public $owner;
 
 	public function getInfo() {
 		return "
 			<h2>{$this->name}</h2>
+			<p>Owner: {$this->getOwner()}</p>
 			<ul>
 				<li>Breed: {$this->breed}</li>
 				<li>Color: {$this->color}</li>
@@ -19,5 +21,13 @@ class Horse {
 				<li>Sex: {$this->sex}</li>
 			</ul>
 		";
+	}
+
+	public function getOwner() {
+		return $this->owner;
+	}
+
+	public function setOwner($name) {
+		$this->owner = $name;
 	}
 }
