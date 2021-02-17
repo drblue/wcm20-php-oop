@@ -21,3 +21,7 @@ $kalle->color = "turkos";
 $kalle->sex = "hingst";
 
 echo "<p>" . $kalle->getInfo() . "</p>"; // $this === $kalle
+
+$anonymous = new Horse();
+
+echo "<p>" . $anonymous->getInfo() . "</p>"; // $this === $anonymous
