@@ -4,12 +4,12 @@ class Horse {
 	public $name;
 	public $breed;
 	public $color;
-	public $height = 'n/a';
-	public $weight = 'n/a';
-	public $sex = "unknown";
+	public $height;
+	public $weight;
+	public $sex;
 	public $owner;
 
-	public function __construct($name, $breed, $color) {
+	public function __construct($name, $breed, $color, $height = null, $weight = null, $sex = null) {
 		// this will always be executed when
 		// a new instance of this class is created
 		// (ex. when we run `new Horse()`)
@@ -17,7 +17,72 @@ class Horse {
 		$this->name = $name;
 		$this->breed = $breed;
 		$this->color = $color;
+
+		/*
+		if (!is_null($height)) {
+			$this->height = $height;
+		}
+		*/
+		$this->setHeight($height);
+
+		/*
+		if (!is_null($weight)) {
+			$this->weight = $weight;
+		}
+		*/
+		$this->setWeight($weight);
+
+		if (!is_null($sex)) {
+			$this->sex = $sex;
+		}
 	}
+
+	/** height */
+	public function getHeight() {
+		return $this->height;
+	}
+
+	public function setHeight($height) {
+		if (!is_numeric($height) || $height <= 0) {
+			return false;
+		}
+
+		$this->height = $height;
+		return true;
+	}
+
+	/** owner */
+	public function getOwner() {
+		return $this->owner;
+	}
+
+	public function hasOwner() {
+		return (!empty($this->owner)); // will return TRUE if owner is NOT empty
+	}
+
+	public function setOwner($name) {
+		if (empty($name)) {
+			return false;
+		}
+
+		$this->owner = $name;
+		return true;
+	}
+
+	/** weight */
+	public function getWeight() {
+		return $this->weight;
+	}
+
+	public function setWeight($weight) {
+		if (!is_numeric($weight) || $weight <= 0) {
+			return false;
+		}
+
+		$this->weight = $weight;
+		return true;
+	}
+
 
 	public function getInfo() {
 		$info = "<h2>{$this->name}</h2>";
@@ -37,35 +102,5 @@ class Horse {
 		</ul>";
 
 		return $info;
-	}
-
-	public function getHeight() {
-		return $this->height;
-	}
-
-	public function setHeight($height) {
-		if (!is_numeric($height) || $height <= 0) {
-			return false;
-		}
-
-		$this->height = $height;
-		return true;
-	}
-
-	public function getOwner() {
-		return $this->owner;
-	}
-
-	public function hasOwner() {
-		return (!empty($this->owner)); // will return TRUE if owner is NOT empty
-	}
-
-	public function setOwner($name) {
-		if (empty($name)) {
-			return false;
-		}
-
-		$this->owner = $name;
-		return true;
 	}
 }
