@@ -32,9 +32,7 @@ class Horse {
 		*/
 		$this->setWeight($weight);
 
-		if (!is_null($sex)) {
-			$this->sex = $sex;
-		}
+		$this->setSex($sex);
 	}
 
 	/** height */
@@ -68,6 +66,23 @@ class Horse {
 		$this->owner = $name;
 		return true;
 	}
+
+	/** sex */
+	public function getSex() {
+		return $this->sex;
+	}
+
+	public function setSex($sex) {
+		$sexes = ['hingst', 'valack', 'sto'];
+
+		if (!in_array($sex, $sexes)) {
+			return false;
+		}
+
+		$this->sex = $sex;
+		return true;
+	}
+
 
 	/** weight */
 	public function getWeight() {
