@@ -76,6 +76,19 @@ class Car {
 	/**
 	 * data methods
 	 */
+
+	public function drive($distance) {
+		if (is_int($distance) && $distance > 0) {
+			$currentMilage = $this->getMilage();
+			$newMilage = $currentMilage + $distance;
+			$this->setMilage($newMilage);
+
+			return true;
+		}
+
+		return false;
+	}
+
 	public function getInfo() {
 		return "Jag är en {$this->getManufacturer()} {$this->getModel()} av årsmodell {$this->getYear()} med registreringsnummer {$this->getRegistrationNumber()} och mätarställning {$this->getMilage()} km.";
 	}
