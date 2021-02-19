@@ -6,11 +6,13 @@ class Car {
 	public $model;
 	public $year;
 	public $registrationNumber;
+	public $milage;
 
-	public function __construct($manufacturer, $model, $year) {
+	public function __construct($manufacturer, $model, $year = 2021, $milage = 0) {
 		$this->setManufacturer($manufacturer);
 		$this->setModel($model);
 		$this->setYear($year);
+		$this->setMilage($milage);
 
 		// profit 💰
 	}
@@ -25,6 +27,19 @@ class Car {
 	}
 	public function setManufacturer($manufacturer) {
 		$this->manufacturer = $manufacturer;
+	}
+
+	/* milage */
+	public function getMilage() {
+		return $this->milage;
+	}
+	public function setMilage($milage) {
+		if (!is_numeric($milage) || $milage < 0) {
+			return false;
+		}
+
+		$this->milage = $milage;
+		return true;
 	}
 
 	/* model */
@@ -45,7 +60,14 @@ class Car {
 
 	/* registrationNumber */
 	public function getRegistrationNumber() {
-		return $this->registrationNumber;
+		if ($this->hasRegistrationNumber()) {
+			return $this->registrationNumber;
+		} else {
+			return "(ej registrerad)";
+		}
+	}
+	public function hasRegistrationNumber() {
+		return (!empty($this->registrationNumber));
 	}
 	public function setRegistrationNumber($registrationNumber) {
 		$this->registrationNumber = $registrationNumber;
@@ -55,6 +77,6 @@ class Car {
 	 * data methods
 	 */
 	public function getInfo() {
-		return "Jag är en {$this->getManufacturer()} {$this->getModel()} av årsmodell {$this->getYear()} med registreringsnummer {$this->getRegistrationNumber()}.";
+		return "Jag är en {$this->getManufacturer()} {$this->getModel()} av årsmodell {$this->getYear()} med registreringsnummer {$this->getRegistrationNumber()} och mätarställning {$this->getMilage()} km.";
 	}
 }
