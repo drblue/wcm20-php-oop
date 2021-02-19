@@ -16,10 +16,12 @@ $car = new Car("Nissan", "Qashqai", 2019, 5400);
 $car->setRegistrationNumber("FUO102");
 array_push($cars, $car);
 
-$car = new Car(21, "Taycan", null, 500);
+$car = new Car("Porsche", "Taycan", null, 500);
 // $car->setRegistrationNumber("GASLOL");
 // $car->drive(50);
 array_push($cars, $car);
+
+$car = new Car("Kia", "Niro");
 
 foreach ($cars as $car) {
 	echo "<p>";
