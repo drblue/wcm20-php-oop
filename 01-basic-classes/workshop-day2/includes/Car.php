@@ -2,11 +2,11 @@
 
 // Klasser skrivs alltid med UpperCamelCase / PascalCase och i singular form
 class Car {
-	public $manufacturer;
-	public $model;
-	public $year;
-	public $registrationNumber;
-	public $milage;
+	protected $manufacturer;
+	protected $model;
+	protected $year;
+	protected $registrationNumber;
+	protected $milage;
 
 	public function __construct($manufacturer, $model, $year = null, $milage = 0) {
 		$this->setManufacturer($manufacturer);
@@ -25,7 +25,7 @@ class Car {
 	public function getManufacturer() {
 		return $this->manufacturer;
 	}
-	public function setManufacturer($manufacturer) {
+	protected function setManufacturer($manufacturer) {
 		$this->manufacturer = $manufacturer;
 	}
 
@@ -33,7 +33,7 @@ class Car {
 	public function getMilage() {
 		return $this->milage;
 	}
-	public function setMilage($milage) {
+	protected function setMilage($milage) {
 		if (!is_numeric($milage) || $milage < 0) {
 			return false;
 		}
@@ -46,7 +46,7 @@ class Car {
 	public function getModel() {
 		return $this->model;
 	}
-	public function setModel($model) {
+	protected function setModel($model) {
 		$this->model = $model;
 	}
 
@@ -54,7 +54,7 @@ class Car {
 	public function getYear() {
 		return $this->year;
 	}
-	public function setYear($year) { // $year = null
+	protected function setYear($year) { // $year = null
 		if (is_int($year) && $year > 1900 && $year < 2030) { // only accept if year is 1901-2029
 			$this->year = $year;
 		} else {
