@@ -8,7 +8,7 @@ class Car {
 	protected $registrationNumber;
 	protected $milage;
 
-	public function __construct($manufacturer, $model, $year = null, $milage = 0) {
+	public function __construct(string $manufacturer, string $model, $year = null, int $milage = 0) {
 		$this->setManufacturer($manufacturer);
 		$this->setModel($model);
 		$this->setYear($year);
@@ -25,7 +25,7 @@ class Car {
 	public function getManufacturer() {
 		return $this->manufacturer;
 	}
-	protected function setManufacturer($manufacturer) {
+	protected function setManufacturer(string $manufacturer) {
 		$this->manufacturer = $manufacturer;
 	}
 
@@ -33,7 +33,7 @@ class Car {
 	public function getMilage() {
 		return $this->milage;
 	}
-	protected function setMilage($milage) {
+	protected function setMilage(int $milage) {
 		if (!is_numeric($milage) || $milage < 0) {
 			return false;
 		}
@@ -46,7 +46,7 @@ class Car {
 	public function getModel() {
 		return $this->model;
 	}
-	protected function setModel($model) {
+	protected function setModel(string $model) {
 		$this->model = $model;
 	}
 
@@ -73,7 +73,7 @@ class Car {
 	public function hasRegistrationNumber() {
 		return (!empty($this->registrationNumber));
 	}
-	public function setRegistrationNumber($registrationNumber) {
+	public function setRegistrationNumber(string $registrationNumber) {
 		$this->registrationNumber = $registrationNumber;
 	}
 
@@ -81,7 +81,7 @@ class Car {
 	 * data methods
 	 */
 
-	public function drive($distance) {
+	public function drive(int $distance) {
 		if (is_int($distance) && $distance > 0) {
 			$currentMilage = $this->milage;
 			$newMilage = $currentMilage + $distance;
