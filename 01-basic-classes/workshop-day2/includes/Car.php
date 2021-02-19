@@ -8,7 +8,7 @@ class Car {
 	public $registrationNumber;
 	public $milage;
 
-	public function __construct($manufacturer, $model, $year = 2021, $milage = 0) {
+	public function __construct($manufacturer, $model, $year = null, $milage = 0) {
 		$this->setManufacturer($manufacturer);
 		$this->setModel($model);
 		$this->setYear($year);
@@ -54,8 +54,12 @@ class Car {
 	public function getYear() {
 		return $this->year;
 	}
-	public function setYear($year) {
-		$this->year = $year;
+	public function setYear($year) { // $year = null
+		if (is_int($year) && $year > 1900 && $year < 2030) { // only accept if year is 1901-2029
+			$this->year = $year;
+		} else {
+			$this->year = date("Y"); // otherwise default to current year
+		}
 	}
 
 	/* registrationNumber */
@@ -79,7 +83,7 @@ class Car {
 
 	public function drive($distance) {
 		if (is_int($distance) && $distance > 0) {
-			$currentMilage = $this->getMilage();
+			$currentMilage = $this->milage;
 			$newMilage = $currentMilage + $distance;
 			$this->setMilage($newMilage);
 
@@ -89,7 +93,11 @@ class Car {
 		return false;
 	}
 
+	public function getAge() {
+		return date("Y") - $this->year;
+	}
+
 	public function getInfo() {
-		return "Jag är en {$this->getManufacturer()} {$this->getModel()} av årsmodell {$this->getYear()} med registreringsnummer {$this->getRegistrationNumber()} och mätarställning {$this->getMilage()} km.";
+		return "Jag är en {$this->getManufacturer()} {$this->getModel()} av årsmodell {$this->getYear()} ({$this->getAge()} år gammal) med registreringsnummer {$this->getRegistrationNumber()} och mätarställning {$this->getMilage()} km.";
 	}
 }
