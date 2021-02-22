@@ -1,6 +1,6 @@
 <?php
 
-include('includes/header.php');
+include('partials/header.php');
 require('includes/Account.php');
 
 /**
@@ -47,4 +47,4 @@ echo "<pre>";
 var_dump($accounts);
 echo "</pre>";
 
-include('includes/footer.php');
+include('partials/footer.php');
