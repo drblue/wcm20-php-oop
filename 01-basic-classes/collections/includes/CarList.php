@@ -31,11 +31,25 @@ class CarList {
 		return false;
 	}
 
+	public function getCarCount() {
+		return count($this->cars);
+	}
+
 	public function getCars() {
 		return $this->cars;
 	}
 
 	public function getName() {
 		return $this->name;
+	}
+
+	public function removeCar(Car $car) {
+		$index = array_search($car, $this->cars); // false
+		if ($index === false) {
+			return false;
+		}
+
+		array_splice($this->cars, $index, 1);
+		return true;
 	}
 }

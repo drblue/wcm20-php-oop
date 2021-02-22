@@ -52,6 +52,14 @@ echo "<pre>";
 var_dump($res);
 echo "</pre>";
 
+$watt = $cars->findCarByRegistrationNumber('WATT');
+$res = $cars->removeCar($watt);
+echo "Result of removing car with registration number WATT: ";
+echo "<pre>";
+var_dump($res);
+echo "</pre>";
+
+echo "<h1>{$cars->getName()} ({$cars->getCarCount()} bilar)</h1>";
 foreach ($cars->getCars() as $car) {
 	echo "<p>";
 	echo $car->getInfo() . " ";
