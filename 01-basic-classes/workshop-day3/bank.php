@@ -10,6 +10,7 @@ $johans_konto = new Account('1234-56,789,012-3', 'Johan Nordström', 13370);
 
 $johans_konto->withdraw(49, 'McVegan & Co', '2021-02-13');
 $johans_konto->withdraw(4995, 'PS5', '2021-02-14'); // PS5 👾
+$johans_konto->withdraw(99, 'Ebbas Café'); // Lunch 😋
 
 /**
  * Pelles konto
@@ -35,7 +36,7 @@ foreach ($accounts as $account) {
 	echo "</thead>";
 	echo "<tbody>";
 	foreach ($account->getTransactions() as $transaction) {
-		echo "<tr><td>{$transaction['date']}</td><td>{$transaction['description']}</td><td>{$transaction['amount']}</td></tr>";
+		echo "<tr><td>{$transaction->getDate()}</td><td>{$transaction->getDescription()}</td><td>{$transaction->getAmount()}</td></tr>";
 	}
 	echo "</tbody>";
 	echo "</table>";

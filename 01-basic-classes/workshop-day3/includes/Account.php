@@ -1,5 +1,7 @@
 <?php
 
+require_once('includes/Transaction.php');
+
 class Account {
 	protected $accountNumber;
 	protected $balance;
@@ -13,21 +15,15 @@ class Account {
 	}
 
 	public function deposit(float $amount, string $description, $date = null) {
-		if (!$date) {
-			$date = date('Y-m-d');
-		}
-
 		$this->balance += $amount;
-		array_push($this->transactions, ['date' => $date, 'description' => $description, 'amount' => $amount]);
+		$transaction = new Transaction($amount, $description, $date);
+		array_push($this->transactions, $transaction);
 	}
 
 	public function withdraw(float $amount, string $description, $date = null) {
-		if (!$date) {
-			$date = date('Y-m-d');
-		}
-
 		$this->balance -= $amount;
-		array_push($this->transactions, ['date' => $date, 'description' => $description, 'amount' => -$amount]);
+		$transaction = new Transaction(-$amount, $description, $date);
+		array_push($this->transactions, $transaction);
 	}
 
 	public function getAccountNumber() {
