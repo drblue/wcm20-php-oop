@@ -35,7 +35,7 @@ foreach ($accounts as $account) {
 	echo "</thead>";
 	echo "<tbody>";
 	foreach ($account->getTransactions() as $transaction) {
-		echo "<tr><td>{$transaction[0]}</td><td>{$transaction[1]}</td><td>{$transaction[2]}</td></tr>";
+		echo "<tr><td>{$transaction['date']}</td><td>{$transaction['description']}</td><td>{$transaction['amount']}</td></tr>";
 	}
 	echo "</tbody>";
 	echo "</table>";

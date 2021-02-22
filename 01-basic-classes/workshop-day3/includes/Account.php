@@ -18,7 +18,7 @@ class Account {
 		}
 
 		$this->balance += $amount;
-		array_push($this->transactions, [$date, $description, $amount]);
+		array_push($this->transactions, ['date' => $date, 'description' => $description, 'amount' => $amount]);
 	}
 
 	public function withdraw(float $amount, string $description, $date = null) {
@@ -27,7 +27,7 @@ class Account {
 		}
 
 		$this->balance -= $amount;
-		array_push($this->transactions, [$date, $description, -$amount]);
+		array_push($this->transactions, ['date' => $date, 'description' => $description, 'amount' => -$amount]);
 	}
 
 	public function getAccountNumber() {
