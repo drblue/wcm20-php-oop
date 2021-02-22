@@ -3,26 +3,20 @@
 class Account {
 	protected $accountNumber;
 	protected $balance;
+	protected $owner;
 
-	public function __construct(string $accountNumber, float $balance = 0) {
+	public function __construct(string $accountNumber, string $owner, float $balance = 0) {
 		$this->accountNumber = $accountNumber;
 		$this->balance = $balance;
-
-		// echo "Created account {$accountNumber} with initial balance {$balance}.<br>";
+		$this->owner = $owner;
 	}
 
 	public function deposit(float $amount) {
-		// $this->balance = $this->balance + $amount;
-		$this->balance += $amount; // same as above
-
-		// echo "Deposited {$amount} to account {$this->accountNumber}, new balance: {$this->balance}.<br>";
+		$this->balance += $amount;
 	}
 
 	public function withdraw(float $amount) {
-		// $this->balance = $this->balance - $amount;
-		$this->balance -= $amount; // same as above
-
-		// echo "Withdrew {$amount} from account {$this->accountNumber}, new balance: {$this->balance}.<br>";
+		$this->balance -= $amount;
 	}
 
 	public function getAccountNumber() {
@@ -31,5 +25,9 @@ class Account {
 
 	public function getCurrentBalance() {
 		return $this->balance;
+	}
+
+	public function getOwner() {
+		return $this->owner;
 	}
 }
