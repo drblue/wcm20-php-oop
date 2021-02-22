@@ -11,12 +11,24 @@ class CarList {
 	}
 
 	public function addCar(Car $car) {
+		// bail if car with same registration number already exists in list
+		if ($this->findCarByRegistrationNumber($car->getRegistrationNumber())) {
+			return false;
+		}
+
 		array_push($this->cars, $car);
 
 		return true;
 	}
 
-	public function findCarByRegistrationNumber() {
+	public function findCarByRegistrationNumber(string $registrationNumber) {
+		foreach ($this->cars as $car) {
+			if ($car->getRegistrationNumber() === $registrationNumber) {
+				return $car;
+			}
+		}
+
+		return false;
 	}
 
 	public function getCars() {
