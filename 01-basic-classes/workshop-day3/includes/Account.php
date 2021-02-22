@@ -12,14 +12,22 @@ class Account {
 		$this->owner = $owner;
 	}
 
-	public function deposit(float $amount) {
+	public function deposit(float $amount, string $description, $date = null) {
+		if (!$date) {
+			$date = date('Y-m-d');
+		}
+
 		$this->balance += $amount;
-		array_push($this->transactions, $amount);
+		array_push($this->transactions, [$date, $description, $amount]);
 	}
 
-	public function withdraw(float $amount) {
+	public function withdraw(float $amount, string $description, $date = null) {
+		if (!$date) {
+			$date = date('Y-m-d');
+		}
+
 		$this->balance -= $amount;
-		array_push($this->transactions, -$amount);
+		array_push($this->transactions, [$date, $description, -$amount]);
 	}
 
 	public function getAccountNumber() {
