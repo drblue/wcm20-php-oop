@@ -1,5 +1,6 @@
 <?php
 
+require_once('includes/Person.php');
 require_once('includes/Transaction.php');
 
 class Account {
@@ -8,7 +9,7 @@ class Account {
 	protected $owner;
 	protected $transactions = [];
 
-	public function __construct(string $accountNumber, string $owner, float $balance = 0) {
+	public function __construct(string $accountNumber, Person $owner, float $balance = 0) {
 		$this->accountNumber = $accountNumber;
 		$this->balance = $balance;
 		$this->owner = $owner;
