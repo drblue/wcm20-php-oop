@@ -21,6 +21,7 @@ $johans_konto->withdraw(4995, 'PS5', '2021-02-14'); // PS5 👾
 $johans_konto->withdraw(99, 'Ebbas Café'); // Lunch 😋
 
 $johans_sparkonto = new Account('1234-56,789,012-4', 4000);
+$johans_sparkonto->withdraw(500, 'Fika'); // Fika är lunch! 😋
 
 $johan->addAccount($johans_konto);
 $johan->addAccount($johans_sparkonto);
@@ -48,17 +49,27 @@ $pelle->addAccount($pelles_konto);
 
 echo "<h1>Kundfientlig Bank nr 1</h1>";
 foreach ($people as $person) {
-	echo "<h2>{$person->getFullName()}</h2>";
+	// echo "<h2 class=\"h3\">{$person->getFullName()}</h2>";
+	// echo '<h2 class="h3">' . $person->getFullName() . '</h2>';
+	printf('<h2 class="h3">%s</h2>', $person->getFullName());
 
 	foreach ($person->getAccounts() as $account) {
-		echo "<h3>Kontonummer {$account->getAccountNumber()}</h3>";
-		echo "<p>";
-		echo "Antal transaktioner på kontot: {$account->getTotalTransactions()}<br>";
-		echo "Saldo: {$account->getCurrentBalance()} kr";
-		echo "</p>";
+		$totalTransactions = sprintf("%d %s",
+			$account->getTotalTransactions(),
+			// nbr_noun($account->getTotalTransactions(), "transaktion", "transaktioner")
+			$account->getTotalTransactions() == 1 ? "transaktion" : "transaktioner"
+		);
+
+		printf('<h3>Kontonummer %s</h3>', $account->getAccountNumber());
+		printf('<p>Antal transaktioner på kontot: %s<br>Saldo: %s kr</p>',
+			$totalTransactions,
+			number_format($account->getCurrentBalance(), 2, ",", " ")
+		);
 	}
 
-	echo "<strong>Totalt kontosaldo: {$person->getTotalBalance()} kr</strong>";
+	printf('<strong>Totalt kontosaldo: %s kr</strong>',
+		number_format($person->getTotalBalance(), 2, ",", " ")
+	);
 
 	echo "<hr />";
 }
