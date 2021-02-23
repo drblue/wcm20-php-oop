@@ -2,8 +2,18 @@
 
 class Boat extends Vehicle {
 	public $type = "Boat";
-	public $floats = true;
+	public $floats;
 	public $wheels = false;
+
+	public function __construct($manufacturer, $model, bool $floats = true) {
+		parent::__construct($manufacturer, $model);
+
+		$this->floats = $floats;
+	}
+
+	public function doesFloat() {
+		return $this->floats;
+	}
 
 	public function getInfo() {
 		// I am a (Formula) (430) (boat) that (floats|does not float) and I have (4|no wheels).

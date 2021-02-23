@@ -2,6 +2,7 @@
 
 require_once('includes/helpers.php');
 
+require_once('includes/VehicleList.php');
 require_once('includes/Vehicle.php');
 require_once('includes/Bicycle.php');
 require_once('includes/Boat.php');
@@ -20,19 +21,43 @@ $titanic->floats = false;
 
 $myBike = new Bicycle("Yosemite", "City Bike");
 
+/*
+$vehiclelist = new VehicleList();
+$vehiclelist->addVehicle($myGenericVehicle);
+$vehiclelist->addVehicle($myCar);
+$vehiclelist->addVehicle($myBoat);
+$vehiclelist->addVehicle($mySecondBoat);
+$vehiclelist->addVehicle($titanic);
+$vehiclelist->addVehicle($myBike);
+*/
+
 $vehicles = [
 	$myGenericVehicle, // 0
 	$myCar, // 1
 	$myBoat, // 2
 	$mySecondBoat, // 3
+	false,
 	$titanic, // 4
 	$myBike // 5
 ];
-
 dump($vehicles);
 
 foreach ($vehicles as $index => $vehicle) {
+	// if it looks like a vehicle and it quacks like a vehicle then it is a vehicle
+	if (!$vehicle instanceof Vehicle) {
+		continue;
+	}
+
 	echo ++$index . ": " . $vehicle->getInfo() . "<br>";
+
+	if ($vehicle instanceof Boat && $vehicle->doesFloat()) {
+		echo "I'm waterproof 💦<br>";
+	} else {
+		echo "Water? Nope.<br>";
+	}
+
+	echo "<hr />";
+
 	/*
 	echo "<h1>{$vehicle->type}: {$vehicle->manufacturer} {$vehicle->model}</h1>";
 
@@ -48,11 +73,6 @@ foreach ($vehicles as $index => $vehicle) {
 		echo "No wheels for me plz!<br>";
 	}
 
-	if ($vehicle->doesFloat()) {
-		echo "I'm waterproof 💦<br>";
-	} else {
-		echo "Water? Nope.<br>";
-	}
 
 	echo "<hr>";
 	*/

@@ -5,8 +5,6 @@ class Vehicle {
 	public $manufacturer;
 	public $model;
 	public $wheels;
-	public $floats = false;
-	public $engine = true;
 
 	public function __construct($manufacturer, $model) {
 		$this->manufacturer = $manufacturer;
@@ -19,14 +17,6 @@ class Vehicle {
 
 	public function getModel() {
 		return $this->model;
-	}
-
-	public function doesFloat() {
-		return $this->floats === true;
-	}
-
-	public function hasEngine() {
-		return $this->engine === true;
 	}
 
 	public function hasWheels() {
