@@ -54,7 +54,7 @@ foreach ($people as $person) {
 		echo "<h3>{$account->getAccountNumber()}</h3>";
 		echo "<p><strong>Balance:</strong> {$account->getCurrentBalance()}</p>";
 
-		echo "<h4>Transactions</h4>";
+		echo "<h4>Transactions ({$account->getTotalTransactions()})</h4>";
 		echo "<table class=\"table table-striped\">";
 		echo "<thead>";
 		echo "<tr><th>Date</th><th>Description</th><th>Amount</th></tr>";

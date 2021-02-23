@@ -39,4 +39,10 @@ class Account {
 	public function getTransactions() {
 		return $this->transactions;
 	}
+
+	// getNbrOfTransactions()
+	// getTransactionCount()
+	public function getTotalTransactions() {
+		return count($this->transactions);
+	}
 }
