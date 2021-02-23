@@ -1,18 +1,15 @@
 <?php
 
-require_once('includes/Person.php');
-require_once('includes/Transaction.php');
+require_once('Transaction.php');
 
 class Account {
 	protected $accountNumber;
 	protected $balance;
-	protected $owner;
 	protected $transactions = [];
 
-	public function __construct(string $accountNumber, Person $owner, float $balance = 0) {
+	public function __construct(string $accountNumber, float $balance = 0) {
 		$this->accountNumber = $accountNumber;
 		$this->balance = $balance;
-		$this->owner = $owner;
 	}
 
 	public function deposit(float $amount, string $description, $date = null) {
