@@ -1,6 +1,6 @@
 <?php
 
-class Boat extends Vehicle {
+class Boat extends MotorVehicle {
 	public $type = "Boat";
 	public $floats;
 	public $wheels = false;

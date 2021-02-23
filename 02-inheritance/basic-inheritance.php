@@ -4,22 +4,35 @@ require_once('includes/helpers.php');
 
 require_once('includes/VehicleList.php');
 require_once('includes/Vehicle.php');
+require_once('includes/MotorVehicle.php');
 require_once('includes/Bicycle.php');
 require_once('includes/Boat.php');
 require_once('includes/Car.php');
 
+echo "Creating a Vehicle..<br>";
 $myGenericVehicle = new Vehicle("Gen", "Eric");
+echo "<br>";
 
+echo "Creating a Car..<br>";
 $myCar = new Car("Tesla", "Roadster 2020", 4);
 $myCar->model = "Roadster 2020";
 $myCar->wheels = 4;
+echo "<br>";
 
+echo "Creating a Boat..<br>";
 $myBoat = new Boat("Bayliner", "VR5 Cuddy");
+echo "<br>";
+echo "Creating a Boat..<br>";
 $mySecondBoat = new Boat("Formula", "430");
+echo "<br>";
+echo "Creating a Boat..<br>";
 $titanic = new Boat("M/S", "Titanic");
 $titanic->floats = false;
+echo "<br>";
 
+echo "Creating a Bicycle..<br>";
 $myBike = new Bicycle("Yosemite", "City Bike");
+echo "<br>";
 
 /*
 $vehiclelist = new VehicleList();
@@ -49,6 +62,12 @@ foreach ($vehicles as $index => $vehicle) {
 	}
 
 	echo ++$index . ": " . $vehicle->getInfo() . "<br>";
+
+	if ($vehicle instanceof MotorVehicle && $vehicle->hasEngine()) {
+		echo "We're powered!<br>";
+	} else {
+		echo "No engine here, just human energy.<br>";
+	}
 
 	if ($vehicle instanceof Boat && $vehicle->doesFloat()) {
 		echo "I'm waterproof 💦<br>";

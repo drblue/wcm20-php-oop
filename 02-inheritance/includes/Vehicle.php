@@ -7,6 +7,7 @@ class Vehicle {
 	public $wheels;
 
 	public function __construct($manufacturer, $model) {
+		echo "Vehicle::__construct() called<br>";
 		$this->manufacturer = $manufacturer;
 		$this->model = $model;
 	}
