@@ -51,21 +51,14 @@ foreach ($people as $person) {
 	echo "<h2>{$person->getFullName()}</h2>";
 
 	foreach ($person->getAccounts() as $account) {
-		echo "<h3>{$account->getAccountNumber()}</h3>";
-		echo "<p><strong>Balance:</strong> {$account->getCurrentBalance()}</p>";
-
-		echo "<h4>Transactions ({$account->getTotalTransactions()})</h4>";
-		echo "<table class=\"table table-striped\">";
-		echo "<thead>";
-		echo "<tr><th>Date</th><th>Description</th><th>Amount</th></tr>";
-		echo "</thead>";
-		echo "<tbody>";
-		foreach ($account->getTransactions() as $transaction) {
-			echo "<tr><td>{$transaction->getDate()}</td><td>{$transaction->getDescription()}</td><td>{$transaction->getAmount()}</td></tr>";
-		}
-		echo "</tbody>";
-		echo "</table>";
+		echo "<h3>Kontonummer {$account->getAccountNumber()}</h3>";
+		echo "<p>";
+		echo "Antal transaktioner på kontot: {$account->getTotalTransactions()}<br>";
+		echo "Saldo: {$account->getCurrentBalance()} kr";
+		echo "</p>";
 	}
+
+	echo "<strong>Totalt kontosaldo: {$person->getTotalBalance()} kr</strong>";
 
 	echo "<hr />";
 }
