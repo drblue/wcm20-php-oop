@@ -1,11 +1,13 @@
 <?php
 
 require_once('includes/Account.php');
+require_once('includes/CreditAccount.php');
+require_once('includes/SavingsAccount.php');
 
 $accounts = [
 	new Account("1234", 100),
-	new Account("2345", 250),
-	new Account("3456", -5000),
+	new SavingsAccount("2345", 250),
+	new CreditAccount("3456", -5000),
 ];
 
 foreach ($accounts as $account) {
