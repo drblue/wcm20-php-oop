@@ -1,5 +1,5 @@
 <?php
 
 class SavingsAccount extends Account {
-	protected $interest = 0.005; // 0,5%
+	const INTEREST = 0.005; // 0,5%
 }

@@ -3,14 +3,14 @@
 class Account {
 	protected $accountNumber;
 	protected $balance;
-	protected $interest = 0;
+	const INTEREST = 0;
 
 	public function __construct(string $accountNumber, float $balance = 0) {
 		$this->accountNumber = $accountNumber;
 		$this->balance = $balance;
 	}
 
-	public function getAccountNumber(): float {
+	public function getAccountNumber(): string {
 		return $this->accountNumber;
 	}
 
@@ -19,11 +19,11 @@ class Account {
 	}
 
 	public function getInterest(): float {
-		return $this->interest;
+		return static::INTEREST;
 	}
 
 	public function getTotalInterest(): float {
-		return $this->balance * $this->interest;
+		return $this->balance * static::INTEREST;
 	}
 
 	public function deposit(float $amount) {}
