@@ -1,6 +1,6 @@
 <?php
 
-class Account {
+abstract class Account {
 	protected $accountNumber;
 	protected $balance;
 	const INTEREST = 0;
