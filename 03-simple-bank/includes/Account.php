@@ -12,37 +12,42 @@ class Account {
 		$this->balance = $balance;
 	}
 
-	public function deposit(float $amount, string $description, $date = null) {
+	public function deposit(float $amount, string $description, $date = null): bool {
 		$this->balance += $amount;
 		$transaction = new Transaction($amount, $description, $date);
 		array_push($this->transactions, $transaction);
+
+		return true;
 	}
 
-	public function withdraw(float $amount, string $description, $date = null) {
+	public function withdraw(float $amount, string $description, $date = null): bool {
+		if ($this->balance - $amount <= 0) {
+			// DENIED!
+			return false;
+		}
+
 		$this->balance -= $amount;
 		$transaction = new Transaction(-$amount, $description, $date);
 		array_push($this->transactions, $transaction);
+
+		return true;
 	}
 
-	public function getAccountNumber() {
+	public function getAccountNumber(): string {
 		return $this->accountNumber;
 	}
 
-	public function getCurrentBalance() {
+	public function getCurrentBalance(): float {
 		return $this->balance;
 	}
 
-	public function getOwner() {
-		return $this->owner;
-	}
-
-	public function getTransactions() {
+	public function getTransactions(): array {
 		return $this->transactions;
 	}
 
 	// getNbrOfTransactions()
 	// getTransactionCount()
-	public function getTotalTransactions() {
+	public function getTotalTransactions(): int {
 		return count($this->transactions);
 	}
 }

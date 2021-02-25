@@ -16,11 +16,11 @@ class Person {
 		array_push($this->accounts, $account);
 	}
 
-	public function getAccounts() {
+	public function getAccounts(): array {
 		return $this->accounts;
 	}
 
-	public function getTotalBalance() {
+	public function getTotalBalance(): float {
 		$totalBalance = 0;
 
 		foreach ($this->accounts as $account) {
@@ -30,15 +30,15 @@ class Person {
 		return $totalBalance;
 	}
 
-	public function getFirstName() {
+	public function getFirstName(): string {
 		return $this->firstName;
 	}
 
-	public function getLastName() {
+	public function getLastName(): string {
 		return $this->lastName;
 	}
 
-	public function getFullName() {
+	public function getFullName(): string {
 		return "{$this->firstName} {$this->lastName}";
 	}
 }
