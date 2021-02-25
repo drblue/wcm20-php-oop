@@ -13,8 +13,17 @@ $query = $dbh->prepare("SELECT * FROM students");
 $query->execute();
 
 // do fun stuff with result
-$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$res_assoc = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$query->execute();
+$res_obj = $query->fetchAll(PDO::FETCH_OBJ);
 
 echo "<pre>";
-var_dump($res);
+echo "# ASSOC\n";
+var_dump($res_assoc);
+echo "\n";
+
+echo "# OBJ\n";
+var_dump($res_obj); // we have no idea here if the objects are students or teachers or whatever since they all are of the same stdClass
+echo "\n";
 echo "</pre>";
