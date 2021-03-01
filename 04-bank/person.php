@@ -46,5 +46,7 @@ $accounts = $accountController->getAccounts($person_id);
 	</tbody>
 </table>
 
+<a href="index.php" class="btn btn-secondary mt-4">&laquo; Back</a>
+
 <?php
 include('partials/footer.php');
