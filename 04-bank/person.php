@@ -7,11 +7,16 @@ if (empty($_REQUEST['id'])) {
 	die("No person id.");
 }
 
+$person_id = $_REQUEST['id'];
 $personController = new PersonController($dbh);
-$person = $personController->getPerson($_REQUEST['id']);
+$person = $personController->getPerson($person_id);
 
-// TODO: Remove this line
-$accounts = [];
+if (!$person) {
+	die("Could not find person with ID {$person_id}.");
+}
+
+$accountController = new AccountController($dbh);
+$accounts = $accountController->getAccounts($person_id);
 
 ?>
 

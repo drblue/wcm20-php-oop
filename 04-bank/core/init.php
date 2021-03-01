@@ -17,4 +17,5 @@ require_once('app/Models/Account.php');
 require_once('app/Models/Person.php');
 
 // controllers
+require_once('app/Controllers/AccountController.php');
 require_once('app/Controllers/PersonController.php');
