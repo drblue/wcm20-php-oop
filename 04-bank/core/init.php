@@ -12,12 +12,5 @@ require_once('core/db.php');
 // helpers
 require_once('includes/helpers.php');
 
-// models
-require_once('app/Models/Account.php');
-require_once('app/Models/Person.php');
-require_once('app/Models/Transaction.php');
-
-// controllers
-require_once('app/Controllers/AccountController.php');
-require_once('app/Controllers/PersonController.php');
-require_once('app/Controllers/TransactionController.php');
+// register autoloading of classes
+require_once('core/autoload.php');
