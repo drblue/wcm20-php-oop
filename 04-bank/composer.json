@@ -1,5 +1,6 @@
 {
     "name": "jn/04-bank",
+    "description": "Example project for using PDO with OOP.",
     "authors": [
         {
             "name": "Johan Nordström",
