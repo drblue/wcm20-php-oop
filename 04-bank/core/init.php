@@ -13,4 +13,4 @@ require_once('core/db.php');
 require_once('includes/helpers.php');
 
 // register autoloading of classes
-require_once('core/autoload.php');
+require_once('vendor/autoload.php');

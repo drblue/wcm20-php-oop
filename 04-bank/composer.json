@@ -7,5 +7,11 @@
             "email": "johan@digitalvillage.se"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "App\\Controllers\\": "app/Controllers",
+            "App\\Models\\": "app/Models"
+        }
+    },
     "require": {}
 }
