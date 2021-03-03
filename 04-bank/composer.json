@@ -1,0 +1,10 @@
+{
+    "name": "jn/04-bank",
+    "authors": [
+        {
+            "name": "Johan Nordström",
+            "email": "johan@digitalvillage.se"
+        }
+    ],
+    "require": {}
+}
