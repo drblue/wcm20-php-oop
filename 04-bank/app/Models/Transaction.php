@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class Transaction {
 	protected $id;
 	protected $date;

@@ -7,6 +7,10 @@ if (empty($_REQUEST['id'])) {
 	die("No account id.");
 }
 
+use App\Controllers\AccountController;
+use App\Controllers\PersonController;
+use App\Controllers\TransactionController;
+
 // Fetch requested account
 $account_id = $_REQUEST['id'];
 $accountController = new AccountController($dbh);

@@ -3,6 +3,8 @@
 require('core/init.php');
 include('partials/header.php');
 
+use App\Controllers\PersonController;
+
 $personController = new PersonController($dbh);
 $people = $personController->getPeople();
 

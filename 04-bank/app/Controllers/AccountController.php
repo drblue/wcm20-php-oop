@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controllers;
+
+use PDO;
+
 class AccountController {
 	protected $dbh;
 
@@ -12,7 +16,7 @@ class AccountController {
 		$query->bindParam(':person_id', $person_id);
 		$query->execute();
 
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Account');
+		return $query->fetchAll(PDO::FETCH_CLASS, 'App\Models\Account');
 	}
 
 	public function getAccount(int $id) {
@@ -20,6 +24,6 @@ class AccountController {
 		$query->bindParam(':id', $id);
 		$query->execute();
 
-		return $query->fetchObject('Account');
+		return $query->fetchObject('App\Models\Account');
 	}
 }

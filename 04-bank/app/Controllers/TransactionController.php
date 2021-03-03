@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controllers;
+
+use PDO;
+
 class TransactionController {
 	protected $dbh;
 
@@ -12,7 +16,7 @@ class TransactionController {
 		$query->bindParam(':account_id', $account_id);
 		$query->execute();
 
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Transaction');
+		return $query->fetchAll(PDO::FETCH_CLASS, 'App\Models\Transaction');
 	}
 
 	public function getTransaction(int $id) {
@@ -20,6 +24,6 @@ class TransactionController {
 		$query->bindParam(':id', $id);
 		$query->execute();
 
-		return $query->fetchObject('Transaction');
+		return $query->fetchObject('App\Models\Transaction');
 	}
 }

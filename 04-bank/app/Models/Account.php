@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 class Account {
 	protected $id;
 	protected $accountnumber;

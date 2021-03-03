@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controllers;
+
+use PDO;
+
 class PersonController {
 	protected $dbh;
 
@@ -11,7 +15,7 @@ class PersonController {
 		$query = $this->dbh->prepare("SELECT * FROM people");
 		$query->execute();
 
-		return $query->fetchAll(PDO::FETCH_CLASS, 'Person');
+		return $query->fetchAll(PDO::FETCH_CLASS, 'App\Models\Person');
 	}
 
 	public function getPerson(int $id) {
@@ -19,6 +23,6 @@ class PersonController {
 		$query->bindParam(':id', $id);
 		$query->execute();
 
-		return $query->fetchObject('Person');
+		return $query->fetchObject('App\Models\Person');
 	}
 }

@@ -7,6 +7,9 @@ if (empty($_REQUEST['id'])) {
 	die("No person id.");
 }
 
+use App\Controllers\AccountController;
+use App\Controllers\PersonController;
+
 $person_id = $_REQUEST['id'];
 $personController = new PersonController($dbh);
 $person = $personController->getPerson($person_id);
