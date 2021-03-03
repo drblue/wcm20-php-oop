@@ -1,0 +1,14 @@
+{
+    "name": "jn/07-composer",
+    "description": "Demo of composer packages",
+    "authors": [
+        {
+            "name": "Johan Nordström",
+            "email": "johan@digitalvillage.se"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^2.45",
+        "fakerphp/faker": "^1.13"
+    }
+}
