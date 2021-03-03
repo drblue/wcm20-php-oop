@@ -4,12 +4,7 @@ namespace App\Controllers;
 
 use PDO;
 
-class TransactionController {
-	protected $dbh;
-
-	public function __construct(PDO $dbh) {
-		$this->dbh = $dbh;
-	}
+class TransactionController extends BaseController {
 
 	public function getTransactions(int $account_id) {
 		$query = $this->dbh->prepare("SELECT * FROM transactions WHERE account_id = :account_id");
