@@ -22,7 +22,7 @@ if (!$account) {
 
 // Fetch the account's owner
 $personController = new PersonController($dbh);
-$person = $personController->getPerson($account->getPersonId());
+$person = $personController->getPerson($account->person_id);
 
 if (!$person) {
 	die("Could not find person with ID {$person_id}.");
@@ -33,14 +33,14 @@ $transactions = $transactionController->getTransactions($account_id);
 
 ?>
 
-<h1>Transactions for account <?php echo $account->getAccountNumber(); ?></h1>
+<h1>Transactions for account <?php echo $account->accountnumber; ?></h1>
 
 <dl class="row">
 	<dt class="col-sm-2">Owner</dt>
 	<dd class="col-sm-10"><?php echo $person->getFullName(); ?></dd>
 
 	<dt class="col-sm-2">Balance</dt>
-	<dd class="col-sm-10"><?php echo $account->getBalance(); ?></dd>
+	<dd class="col-sm-10"><?php echo $account->balance; ?></dd>
 </dl>
 
 <table class="table table-striped">
@@ -56,16 +56,16 @@ $transactions = $transactionController->getTransactions($account_id);
 		<!-- here be content -->
 		<?php foreach ($transactions as $transaction): ?>
 			<tr>
-				<td><?php echo $transaction->getId(); ?></td>
-				<td><?php echo $transaction->getDate(); ?></td>
-				<td><?php echo $transaction->getDescription(); ?></td>
-				<td><?php echo $transaction->getAmount(); ?></td>
+				<td><?php echo $transaction->id; ?></td>
+				<td><?php echo $transaction->date; ?></td>
+				<td><?php echo $transaction->description; ?></td>
+				<td><?php echo $transaction->amount; ?></td>
 			</tr>
 		<?php endforeach; ?>
 	</tbody>
 </table>
 
-<a href="person.php?id=<?php echo $account->getPersonId(); ?>" class="btn btn-secondary mt-4">&laquo; Back</a>
+<a href="person.php?id=<?php echo $account->person_id; ?>" class="btn btn-secondary mt-4">&laquo; Back</a>
 
 <?php
 include('partials/footer.php');
