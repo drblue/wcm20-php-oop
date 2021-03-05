@@ -5,7 +5,7 @@ namespace App\Controllers;
 class TransactionController extends BaseController {
 
 	public function getTransactions(int $account_id) {
-		return $this->queryWhere('transactions', 'App\Models\Transaction', 'account_id', $account_id);
+		return $this->queryAll('transactions', 'App\Models\Transaction', 'account_id', $account_id);
 	}
 
 	public function getTransaction(int $id) {
