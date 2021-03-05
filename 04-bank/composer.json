@@ -13,5 +13,7 @@
             "App\\Models\\": "app/Models"
         }
     },
-    "require": {}
+    "require": {
+        "illuminate/database": "^8.31"
+    }
 }
