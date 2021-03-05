@@ -38,11 +38,11 @@ $accounts = $accountController->getAccounts($person_id);
 		<!-- here be content -->
 		<?php foreach ($accounts as $account): ?>
 			<tr>
-				<td><?php echo $account->getId(); ?></td>
-				<td><?php echo $account->getAccountNumber(); ?></td>
-				<td><?php echo $account->getBalance(); ?></td>
+				<td><?php echo $account->id; ?></td>
+				<td><?php echo $account->accountnumber; ?></td>
+				<td><?php echo $account->balance; ?></td>
 				<td>
-					<a href="account.php?id=<?php echo $account->getId(); ?>" class="btn btn-primary">View &raquo;</a>
+					<a href="account.php?id=<?php echo $account->id; ?>" class="btn btn-primary">View &raquo;</a>
 				</td>
 			</tr>
 		<?php endforeach; ?>
