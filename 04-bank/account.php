@@ -13,7 +13,7 @@ use App\Controllers\TransactionController;
 
 // Fetch requested account
 $account_id = $_REQUEST['id'];
-$accountController = new AccountController($dbh);
+$accountController = new AccountController();
 $account = $accountController->getAccount($account_id);
 
 if (!$account) {
@@ -21,14 +21,14 @@ if (!$account) {
 }
 
 // Fetch the account's owner
-$personController = new PersonController($dbh);
+$personController = new PersonController();
 $person = $personController->getPerson($account->person_id);
 
 if (!$person) {
 	die("Could not find person with ID {$person_id}.");
 }
 
-$transactionController = new TransactionController($dbh);
+$transactionController = new TransactionController();
 $transactions = $transactionController->getTransactions($account_id);
 
 if (isset($_REQUEST['res'])) {

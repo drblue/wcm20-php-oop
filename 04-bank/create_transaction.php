@@ -14,7 +14,7 @@ $date = $_POST['date'];
 $description = $_POST['description'];
 $amount = $_POST['amount'];
 
-$transactionController = new TransactionController($dbh);
+$transactionController = new TransactionController();
 $transaction = $transactionController->createTransaction($account_id, $date, $description, $amount);
 
 if ($transaction) {

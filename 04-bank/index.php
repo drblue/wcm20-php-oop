@@ -5,7 +5,7 @@ include('partials/header.php');
 
 use App\Controllers\PersonController;
 
-$personController = new PersonController($dbh);
+$personController = new PersonController();
 $people = $personController->getPeople();
 
 ?>

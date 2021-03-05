@@ -11,14 +11,14 @@ use App\Controllers\AccountController;
 use App\Controllers\PersonController;
 
 $person_id = $_REQUEST['id'];
-$personController = new PersonController($dbh);
+$personController = new PersonController();
 $person = $personController->getPerson($person_id);
 
 if (!$person) {
 	die("Could not find person with ID {$person_id}.");
 }
 
-$accountController = new AccountController($dbh);
+$accountController = new AccountController();
 $accounts = $accountController->getAccounts($person_id);
 
 ?>
