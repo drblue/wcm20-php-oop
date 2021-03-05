@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\Transaction;
+
 class TransactionController extends BaseController {
-	protected $model = 'App\Models\Transaction';
+	protected $model = Transaction::class;
 	protected $table = 'transactions';
 
 	public function getTransactions(int $account_id) {

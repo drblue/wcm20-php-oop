@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\Person;
+
 class PersonController extends BaseController {
-	protected $model = 'App\Models\Person';
+	protected $model = Person::class;
 	protected $table = 'people';
 
 	public function getPeople() {
