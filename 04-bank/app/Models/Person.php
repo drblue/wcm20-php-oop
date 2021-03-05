@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-class Person {
-	protected $id;
+class Person extends BaseModel {
 	protected $firstname;
 	protected $lastname;
 
@@ -13,10 +12,6 @@ class Person {
 
 	public function getFullName() {
 		return "{$this->firstname} {$this->lastname}";
-	}
-
-	public function getId() {
-		return $this->id;
 	}
 
 	public function getLastName() {

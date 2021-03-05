@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-class Account {
-	protected $id;
+class Account extends BaseModel {
 	protected $accountnumber;
 	protected $balance;
 	protected $person_id;
@@ -14,10 +13,6 @@ class Account {
 
 	public function getBalance() {
 		return $this->balance;
-	}
-
-	public function getId() {
-		return $this->id;
 	}
 
 	public function getPersonId() {

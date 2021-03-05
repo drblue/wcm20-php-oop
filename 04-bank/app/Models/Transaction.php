@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-class Transaction {
-	protected $id;
+class Transaction extends BaseModel {
 	protected $date;
 	protected $description;
 	protected $amount;
@@ -15,10 +14,6 @@ class Transaction {
 
 	public function getDescription() {
 		return $this->description;
-	}
-
-	public function getId() {
-		return $this->id;
 	}
 
 	public function getAmount() {
