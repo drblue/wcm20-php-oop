@@ -2,19 +2,10 @@
 
 namespace App\Models;
 
-class Person extends BaseModel {
-	protected $firstname;
-	protected $lastname;
+use Illuminate\Database\Eloquent\Model;
 
-	public function getFirstName() {
-		return $this->firstname;
-	}
-
+class Person extends Model {
 	public function getFullName() {
 		return "{$this->firstname} {$this->lastname}";
-	}
-
-	public function getLastName() {
-		return $this->lastname;
 	}
 }

@@ -5,14 +5,12 @@ namespace App\Controllers;
 use App\Models\Person;
 
 class PersonController extends BaseController {
-	protected $model = Person::class;
-	protected $table = 'people';
 
 	public function getPeople() {
-		return $this->queryAll();
+		return Person::all();
 	}
 
 	public function getPerson(int $id) {
-		return $this->queryId($id);
+		return Person::find($id);
 	}
 }
