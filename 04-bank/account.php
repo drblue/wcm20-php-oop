@@ -31,6 +31,22 @@ if (!$person) {
 $transactionController = new TransactionController($dbh);
 $transactions = $transactionController->getTransactions($account_id);
 
+if (isset($_REQUEST['res'])) {
+	if ($_REQUEST['res'] === 'success') {
+		?>
+			<div class="alert alert-success" role="alert">
+				Transaction successfully created.
+			</div>
+		<?php
+	} else {
+		?>
+			<div class="alert alert-danger" role="alert">
+				😱 DANGER WILL ROBINSON! Failed to create transaction!
+			</div>
+		<?php
+	}
+}
+
 ?>
 
 <h1>Transactions for account <?php echo $account->accountnumber; ?></h1>
@@ -64,6 +80,14 @@ $transactions = $transactionController->getTransactions($account_id);
 		<?php endforeach; ?>
 	</tbody>
 </table>
+
+<hr class="my-4" />
+
+<?php
+	include('partials/create-transaction-form.php');
+?>
+
+<hr class="my-4" />
 
 <a href="person.php?id=<?php echo $account->person_id; ?>" class="btn btn-secondary mt-4">&laquo; Back</a>
 
