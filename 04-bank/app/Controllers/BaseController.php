@@ -11,24 +11,24 @@ abstract class BaseController {
 		$this->dbh = $dbh;
 	}
 
-	protected function queryId($table, $type, $id) {
-		$query = $this->dbh->prepare("SELECT * FROM {$table} WHERE id = :id");
+	protected function queryId($id) {
+		$query = $this->dbh->prepare("SELECT * FROM {$this->table} WHERE id = :id");
 		$query->bindParam(':id', $id);
 		$query->execute();
 
-		return $query->fetchObject($type);
+		return $query->fetchObject($this->model);
 	}
 
-	protected function queryAll($table, $type, $column = null, $value = null) {
+	protected function queryAll($column = null, $value = null) {
 		if ($column) {
-			$query = $this->dbh->prepare("SELECT * FROM {$table} WHERE {$column} = :val");
+			$query = $this->dbh->prepare("SELECT * FROM {$this->table} WHERE {$column} = :val");
 			$query->bindParam(':val', $value);
 		} else {
-			$query = $this->dbh->prepare("SELECT * FROM {$table}");
+			$query = $this->dbh->prepare("SELECT * FROM {$this->table}");
 		}
 		$query->execute();
 
-		return $query->fetchAll(PDO::FETCH_CLASS, $type);
+		return $query->fetchAll(PDO::FETCH_CLASS, $this->model);
 	}
 
 }

@@ -3,12 +3,14 @@
 namespace App\Controllers;
 
 class AccountController extends BaseController {
+	protected $model = 'App\Models\Account';
+	protected $table = 'accounts';
 
 	public function getAccounts(int $person_id) {
-		return $this->queryAll('accounts', 'App\Models\Account', 'person_id', $person_id);
+		return $this->queryAll('person_id', $person_id);
 	}
 
 	public function getAccount(int $id) {
-		return $this->queryId('accounts', 'App\Models\Account', $id);
+		return $this->queryId($id);
 	}
 }
