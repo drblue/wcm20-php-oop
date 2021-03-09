@@ -18,6 +18,7 @@ use App\Models\Phone;
 			<th>Id</th>
 			<th>Model</th>
 			<th>IMEI</th>
+			<th>Phones</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -29,6 +30,7 @@ use App\Models\Phone;
 						<td><?php echo $person->id; ?></td>
 						<td><?php echo $person->name; ?></td>
 						<td><?php echo $person->title; ?></td>
+						<td><?php echo $person->phones->count(); ?></td>
 						<td>
 							<a href="person.php?id=<?php echo $person->id; ?>" class="btn btn-primary btn-sm">View &raquo;</a>
 						</td>
@@ -49,6 +51,7 @@ use App\Models\Phone;
 			<th>Id</th>
 			<th>Model</th>
 			<th>IMEI</th>
+			<th>Has owner?</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -60,6 +63,7 @@ use App\Models\Phone;
 						<td><?php echo $phone->id; ?></td>
 						<td><?php echo $phone->model; ?></td>
 						<td><?php echo $phone->imei; ?></td>
+						<td><?php echo $phone->person ? "Yes" : "No"; ?></td>
 						<td>
 							<a href="phone.php?id=<?php echo $phone->id; ?>" class="btn btn-primary btn-sm">View &raquo;</a>
 						</td>
