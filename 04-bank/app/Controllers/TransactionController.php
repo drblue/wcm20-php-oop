@@ -6,7 +6,11 @@ use App\Models\Transaction;
 
 class TransactionController extends BaseController {
 	public function getTransactions(int $account_id) {
-		return Transaction::where('account_id', $account_id)->get();
+		return Transaction::where('account_id', $account_id)->orderBy('date', 'desc')->get();
+	}
+
+	public function getTransactionCount(int $account_id) {
+		return Transaction::where('account_id', $account_id)->count();
 	}
 
 	public function getTransaction(int $id) {

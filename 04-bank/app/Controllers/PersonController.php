@@ -7,7 +7,7 @@ use App\Models\Person;
 class PersonController extends BaseController {
 
 	public function getPeople() {
-		return Person::all();
+		return Person::orderBy('firstname')->orderBy('lastname')->get();
 	}
 
 	public function getPerson(int $id) {

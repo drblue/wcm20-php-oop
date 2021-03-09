@@ -9,6 +9,7 @@ if (empty($_REQUEST['id'])) {
 
 use App\Controllers\AccountController;
 use App\Controllers\PersonController;
+use App\Controllers\TransactionController;
 
 $person_id = $_REQUEST['id'];
 $personController = new PersonController();
@@ -21,6 +22,8 @@ if (!$person) {
 $accountController = new AccountController();
 $accounts = $accountController->getAccounts($person_id);
 
+$transactionController = new TransactionController();
+
 ?>
 
 <h1>Accounts for <?php echo $person->getFullName(); ?></h1>
@@ -31,16 +34,19 @@ $accounts = $accountController->getAccounts($person_id);
 			<th>Id</th>
 			<th>Account Number</th>
 			<th>Balance</th>
+			<th>Transactions</th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<!-- here be content -->
 		<?php foreach ($accounts as $account): ?>
+			<?php $transactionCount = $transactionController->getTransactionCount($account->id); ?>
 			<tr>
 				<td><?php echo $account->id; ?></td>
 				<td><?php echo $account->accountnumber; ?></td>
 				<td><?php echo $account->balance; ?></td>
+				<td><?php echo $transactionCount; ?></td>
 				<td>
 					<a href="account.php?id=<?php echo $account->id; ?>" class="btn btn-primary">View &raquo;</a>
 				</td>
