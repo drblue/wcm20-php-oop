@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model {  // people
 
 	/**
+	 * Indicates if the model should be timestamped.
+	 *
+	 * @var bool
+	 */
+	public $timestamps = false;
+
+	/**
 	 * A Person has many Phones
 	 *
 	 * @return App\Models\Phone
