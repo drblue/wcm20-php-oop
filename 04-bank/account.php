@@ -20,17 +20,6 @@ if (!$account) {
 	die("Could not find account with ID {$account_id}.");
 }
 
-// Fetch the account's owner
-$personController = new PersonController();
-$person = $personController->getPerson($account->person_id);
-
-if (!$person) {
-	die("Could not find person with ID {$person_id}.");
-}
-
-$transactionController = new TransactionController();
-$transactions = $transactionController->getTransactions($account_id);
-
 if (isset($_REQUEST['res'])) {
 	if ($_REQUEST['res'] === 'success') {
 		?>
@@ -53,7 +42,7 @@ if (isset($_REQUEST['res'])) {
 
 <dl class="row">
 	<dt class="col-sm-2">Owner</dt>
-	<dd class="col-sm-10"><?php echo $person->getFullName(); ?></dd>
+	<dd class="col-sm-10"><?php echo $account->person->getFullName(); ?></dd>
 
 	<dt class="col-sm-2">Balance</dt>
 	<dd class="col-sm-10"><?php echo $account->balance; ?></dd>
@@ -70,7 +59,7 @@ if (isset($_REQUEST['res'])) {
 	</thead>
 	<tbody>
 		<!-- here be content -->
-		<?php foreach ($transactions as $transaction): ?>
+		<?php foreach ($account->transactions()->orderBy('date', 'desc')->get() as $transaction): ?>
 			<tr>
 				<td><?php echo $transaction->id; ?></td>
 				<td><?php echo $transaction->date; ?></td>
@@ -89,7 +78,7 @@ if (isset($_REQUEST['res'])) {
 
 <hr class="my-4" />
 
-<a href="person.php?id=<?php echo $account->person_id; ?>" class="btn btn-secondary mt-4">&laquo; Back</a>
+<a href="person.php?id=<?php echo $account->person->id; ?>" class="btn btn-secondary mt-4">&laquo; Back</a>
 
 <?php
 include('partials/footer.php');
