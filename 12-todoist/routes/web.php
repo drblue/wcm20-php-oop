@@ -17,9 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function() {
-	return view('test');
-});
+use App\Http\Controllers\TodoController;
+Route::get('/todos', [TodoController::class, 'index']);
+
+// Route::get('/todos', ['App\Http\Controllers\TodoController', 'index']);
 
 Route::get('/hej', function() {
 	return view('hej');
