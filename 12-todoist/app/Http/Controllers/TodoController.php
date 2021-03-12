@@ -23,8 +23,8 @@ class TodoController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
-		$todo = Todo::findOrFail($id);
+	public function show(Todo $todo) {
+		// $todo = Todo::findOrFail($id);
 
 		return view('todos/show', ['todo' => $todo]);
 	}

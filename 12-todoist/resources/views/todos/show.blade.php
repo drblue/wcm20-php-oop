@@ -16,5 +16,5 @@
 		<p>{{ $todo->description }}</p>
 	@endif
 
-	<a href="/" class="btn btn-secondary">&laquo; Back</a>
+	<a href="/todos" class="btn btn-secondary">&laquo; Back</a>
 @endsection

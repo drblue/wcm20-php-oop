@@ -19,4 +19,16 @@ Route::get('/', function () {
 
 use App\Http\Controllers\TodoController;
 Route::get('/todos', [TodoController::class, 'index']);
-Route::get('/todos/{id}', [TodoController::class, 'show']);
+Route::get('/todos/{todo}', [TodoController::class, 'show']);
+
+use App\Http\Controllers\ProjectController;
+/*
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('/projects/create', [ProjectController::class, 'create']);
+Route::post('/projects', [ProjectController::class, 'store']);
+Route::get('/projects/{project}', [ProjectController::class, 'show']);
+Route::get('/projects/{project}/edit', [ProjectController::class, 'edit']);
+Route::put('/projects/{project}', [ProjectController::class, 'update']);
+Route::delete('/projects/{project}', [ProjectController::class, 'destroy']);
+*/
+Route::resource('/projects', ProjectController::class);
