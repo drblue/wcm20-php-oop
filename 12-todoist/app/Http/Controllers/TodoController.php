@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Todo;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -12,8 +13,7 @@ class TodoController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$todos = ['My first todo item', 'My second todo item', 'My third todo item'];
-		// $todos = [];
+		$todos = Todo::all();
 
 		return view('todos/index', ['todos' => $todos]);
 	}
@@ -24,6 +24,8 @@ class TodoController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id) {
-		return view('todos/show', ['todo' => "This is a single todo with ID {$id}."]);
+		$todo = Todo::findOrFail($id);
+
+		return view('todos/show', ['todo' => $todo]);
 	}
 }

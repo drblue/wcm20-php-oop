@@ -6,7 +6,14 @@
 	@if(count($todos) > 0)
 		<ul>
 			@foreach($todos as $todo)
-				<li>{{ $todo }}</li>
+				<li>
+					<a href="/todos/{{ $todo->id }}">
+						{{ $todo->title }}
+					</a>
+					@if($todo->completed)
+						<span class="completed">✅</span>
+					@endif
+				</li>
 			@endforeach
 		</ul>
 	@else
