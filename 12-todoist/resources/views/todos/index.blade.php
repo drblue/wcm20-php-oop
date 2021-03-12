@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts/app')
 
 @section('content')
 	<strong>Here be list of todos to do. LOL.</strong>

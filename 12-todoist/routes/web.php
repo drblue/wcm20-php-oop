@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	return redirect('/todos');
 });
 
 use App\Http\Controllers\TodoController;
 Route::get('/todos', [TodoController::class, 'index']);
-
-// Route::get('/todos', ['App\Http\Controllers\TodoController', 'index']);
+Route::get('/todos/{id}', [TodoController::class, 'show']);
