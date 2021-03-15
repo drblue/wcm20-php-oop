@@ -35,8 +35,16 @@ class ProjectController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		dump($request->input('project_name'));
-		dump(request('project_name'));
+		if (!$request->filled('project_name')) {
+			// abort
+			die("abort abort abort!");
+		}
+
+		$project = Project::create([
+			'name' => $request->input('project_name'),
+		]);
+
+		return redirect("/projects/{$project->id}");
 	}
 
 	/**
