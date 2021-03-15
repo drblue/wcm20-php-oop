@@ -9,7 +9,7 @@
 
 		<div class="mb-3">
 			<label for="title" class="form-label">Title</label>
-			<input type="text" id="title" name="title" class="form-control" placeholder="Enter title of todo">
+			<input type="text" id="title" name="title" class="form-control" placeholder="Enter title of todo" required>
 		</div>
 
 		<div class="mb-3">
