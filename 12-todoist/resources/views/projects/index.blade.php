@@ -17,4 +17,6 @@
 		<p>There are no projects.</p>
 	@endif
 
+	<a href="/projects/create" class="btn btn-primary">Create a new Project</a>
+
 @endsection

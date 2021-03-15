@@ -29,6 +29,10 @@
 		</tbody>
 	</table>
 
+	<div class="mt-3">
+		<a href="/projects/{{ $project->id }}/todos/create" class="btn btn-primary">Create a new Todo</a>
+	</div>
+
 	<div class="mt-5">
 		<a href="/projects" class="btn btn-secondary">&laquo; Back</a>
 	</div>

@@ -8,10 +8,10 @@
 
 		<div class="mb-3">
 			<label for="project_name" class="form-label">Name of Project</label>
-			<input type="text" name="project_name" class="form-control" placeholder="Enter name of project">
+			<input type="text" id="project_name" name="project_name" class="form-control" placeholder="Enter name of project">
 		</div>
 
-		<button type="submit" class="btn btn-primary w-100">Create</button>
+		<button type="submit" class="btn btn-success w-100">Create</button>
 	</form>
 
 	<div class="mt-5">

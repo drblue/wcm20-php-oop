@@ -23,22 +23,36 @@ class TodoController extends Controller
 	/**
 	 * Show the form for creating a new resource.
 	 *
+	 * GET `/projects/{project}/todos/create`
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
+	public function create(Project $project)
 	{
-		//
+		return view('todos/create', ['project' => $project]);
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * POST `/projects/{project}/todos`
+	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store(Request $request, Project $project)
 	{
-		//
+		if (!$request->filled('title')) {
+			die("Abort abort abort!");
+		}
+
+		$todo = $project->todos()->create([
+			'title' => $request->input('title'),
+			'description' => $request->input('description'),
+		]);
+
+		// redirect user to `/projects/{project}`
+		return redirect("/projects/{$project->id}");
 	}
 
 	/**
