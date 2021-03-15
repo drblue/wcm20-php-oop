@@ -35,7 +35,8 @@ class ProjectController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		dump($request->input('project_name'));
+		dump(request('project_name'));
 	}
 
 	/**

@@ -29,5 +29,7 @@
 		</tbody>
 	</table>
 
-	<a href="/projects" class="btn btn-secondary">&laquo; Back</a>
+	<div class="mt-5">
+		<a href="/projects" class="btn btn-secondary">&laquo; Back</a>
+	</div>
 @endsection

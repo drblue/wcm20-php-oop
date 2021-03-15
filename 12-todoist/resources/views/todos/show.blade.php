@@ -39,5 +39,7 @@
 		<p>{{ $todo->description }}</p>
 	@endif
 
-	<a href="/projects/{{ $todo->project->id }}" class="btn btn-secondary">&laquo; Back to the project</a>
+	<div class="mt-5">
+		<a href="/projects/{{ $todo->project->id }}" class="btn btn-secondary">&laquo; Back to the project</a>
+	</div>
 @endsection
