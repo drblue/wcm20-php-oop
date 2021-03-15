@@ -71,10 +71,12 @@ class TodoController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
+	 * GET `/projects/{project}/todos/{todo}/edit`
+	 *
 	 * @param  \App\Models\Todo  $todo
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(Todo $todo)
+	public function edit(Project $project, Todo $todo)
 	{
 		//
 	}
@@ -82,11 +84,13 @@ class TodoController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
+	 * PUT `/projects/{project}/todos/{todo}`
+	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @param  \App\Models\Todo  $todo
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Todo $todo)
+	public function update(Request $request, Project $project, Todo $todo)
 	{
 		//
 	}
@@ -94,10 +98,12 @@ class TodoController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
+	 * DELETE `/projects/{project}/todos/{todo}`
+	 *
 	 * @param  \App\Models\Todo  $todo
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Todo $todo)
+	public function destroy(Project $project, Todo $todo)
 	{
 		//
 	}
