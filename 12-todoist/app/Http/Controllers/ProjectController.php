@@ -36,8 +36,7 @@ class ProjectController extends Controller
 	public function store(Request $request)
 	{
 		if (!$request->filled('project_name')) {
-			// abort
-			die("abort abort abort!");
+			return redirect()->back()->with('warning', 'Please enter a name for the project.');
 		}
 
 		$project = Project::create([

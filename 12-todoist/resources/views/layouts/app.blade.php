@@ -15,6 +15,9 @@
 	<!-- /nav -->
 
 	<div class="container mt-3">
+		<!-- status alerts -->
+		@include('layouts/status')
+		<!-- /status alerts -->
 
 		<!-- content -->
 		@yield('content')

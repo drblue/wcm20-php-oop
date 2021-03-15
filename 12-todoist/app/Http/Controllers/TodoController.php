@@ -43,7 +43,7 @@ class TodoController extends Controller
 	public function store(Request $request, Project $project)
 	{
 		if (!$request->filled('title')) {
-			die("Abort abort abort!");
+			return redirect()->back()->with('warning', 'Please enter a title for the todo.');
 		}
 
 		$todo = $project->todos()->create([
@@ -52,7 +52,8 @@ class TodoController extends Controller
 		]);
 
 		// redirect user to `/projects/{project}`
-		return redirect("/projects/{$project->id}");
+		return redirect("/projects/{$project->id}")
+			->with("success", "Todo successfully created with ID {$todo->id}.");
 	}
 
 	/**
