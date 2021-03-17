@@ -77,7 +77,15 @@ class ProjectController extends Controller
 	 */
 	public function update(Request $request, Project $project)
 	{
-		//
+		if (!$request->filled('project_name')) {
+			return redirect()->back()->with('warning', 'Please enter a name for the project.');
+		}
+
+		$project->update([
+			'name' => $request->input('project_name'),
+		]);
+
+		return redirect("/projects/{$project->id}");
 	}
 
 	/**

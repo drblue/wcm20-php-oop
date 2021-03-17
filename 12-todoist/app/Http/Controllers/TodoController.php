@@ -79,7 +79,7 @@ class TodoController extends Controller
 	 */
 	public function edit(Project $project, Todo $todo)
 	{
-		//
+		return view('todos/edit', ['project' => $project, 'todo' => $todo]);
 	}
 
 	/**
@@ -93,7 +93,18 @@ class TodoController extends Controller
 	 */
 	public function update(Request $request, Project $project, Todo $todo)
 	{
-		//
+		if (!$request->filled('title')) {
+			return redirect()->back()->with('warning', 'Please enter a title for the todo.');
+		}
+
+		$todo->update([
+			'title' => $request->input('title'),
+			'description' => $request->input('description'),
+		]);
+
+		// redirect user to `/projects/{project}`
+		return redirect("/projects/{$project->id}")
+			->with("success", "Todo with ID {$todo->id} successfully updated.");
 	}
 
 	/**
