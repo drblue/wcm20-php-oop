@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function() {
+	Route::resource('/articles', ArticleController::class);
+});
+
+Route::get('/auth-test', function() {
+	dd([
+		'Is user logged in?' => Auth::check(),
+		'Is user guest?' => Auth::guest(),
+		'ID of logged in user?' => Auth::id(),
+		'Logged in User' => Auth::user(),
+	]);
+});
