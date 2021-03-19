@@ -11,4 +11,16 @@ article {
 			font-weight: 600;
 		}
 	}
+
+	.actions {
+		display: flex;
+
+		> * {
+			margin-right: 1rem;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
 }

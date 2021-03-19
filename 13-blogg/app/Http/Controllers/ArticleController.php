@@ -111,6 +111,10 @@ class ArticleController extends Controller
 	 */
 	public function destroy(Article $article)
 	{
-		//
+		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to delete this article.');
+
+		$article->delete();
+
+		return redirect()->route('articles.index')->with('success', 'Article has been deleted');
 	}
 }

@@ -27,7 +27,15 @@
 			@auth
 				@if(Illuminate\Support\Facades\Auth::user()->id === $article->author->id)
 					<div class="actions">
+						<a href="{{ route('articles.create') }}" class="btn btn-success">Create new article</a>
 						<a href="{{ route('articles.edit', ['article' => $article]) }}" class="btn btn-warning">Edit article</a>
+
+						<form action="{{ route('articles.destroy', ['article' => $article]) }}" method="POST">
+							@csrf
+							@method('DELETE')
+
+							<button type="submit" class="btn btn-danger">Delete article</button>
+						</form>
 					</div>
 				@endif
 			@endauth
