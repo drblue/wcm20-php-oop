@@ -27,7 +27,9 @@ class ArticleController extends Controller
 	 */
 	public function create()
 	{
-		//
+		abort_unless(Auth::check(), 401, 'You have to be logged in to create an article.');
+
+		return view('articles/create');
 	}
 
 	/**
@@ -38,7 +40,19 @@ class ArticleController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		abort_unless(Auth::check(), 401, 'You have to be logged in to create an article.');
+
+		if (!$request->filled('title')) {
+			return redirect()->back()->with('warning', 'Please enter a title for the article.');
+		}
+
+		$article = Auth::user()->articles()->create([
+			'title' => $request->input('title'),
+			'excerpt' => $request->input('excerpt'),
+			'content' => $request->input('content'),
+		]);
+
+		return redirect()->route('articles.show', ['article' => $article]);
 	}
 
 	/**
