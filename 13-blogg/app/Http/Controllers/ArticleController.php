@@ -74,7 +74,9 @@ class ArticleController extends Controller
 	 */
 	public function edit(Article $article)
 	{
-		//
+		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to edit this article.');
+
+		return view('articles/edit', ['article' => $article]);
 	}
 
 	/**
@@ -86,7 +88,19 @@ class ArticleController extends Controller
 	 */
 	public function update(Request $request, Article $article)
 	{
-		//
+		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to edit this article.');
+
+		if (!$request->filled('title')) {
+			return redirect()->back()->with('warning', 'Please enter a title for the article.');
+		}
+
+		$article->update([
+			'title' => $request->input('title'),
+			'excerpt' => $request->input('excerpt'),
+			'content' => $request->input('content'),
+		]);
+
+		return redirect()->route('articles.show', ['article' => $article])->with('success', 'Article updated.');
 	}
 
 	/**
