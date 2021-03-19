@@ -6,3 +6,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// App styles
+@import 'articles';
+
+.btn-primary {
+	color: $white;
+}
