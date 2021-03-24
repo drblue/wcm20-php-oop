@@ -8,6 +8,19 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
+	protected static $users = [
+		[
+			'name' => 'Johan Nordström',
+			'email' => 'jn@thehiveresistance.com',
+			'password' => 'password',
+		],
+		[
+			'name' => 'Peter Jacobsen',
+			'email' => 'buspeter@gmail.com',
+			'password' => 'password',
+		],
+	];
+
 	/**
 	 * Run the database seeds.
 	 *
@@ -15,13 +28,15 @@ class UserSeeder extends Seeder
 	 */
 	public function run()
 	{
-		// Create initial user
-		if (User::where('email', 'admin@admin.org')->doesntExist()) {
-			User::create([
-				'name' => 'Admin Adminsson',
-				'email' => 'admin@admin.org',
-				'password' => Hash::make('apa'),
-			]);
+		// Create initial users
+		foreach (static::$users as $user) {
+			if (User::where('email', $user['email'])->doesntExist()) {
+				User::create([
+					'name' => $user['name'],
+					'email' => $user['email'],
+					'password' => Hash::make($user['password']),
+				]);
+			}
 		}
 	}
 }
