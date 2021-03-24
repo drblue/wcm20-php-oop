@@ -21,4 +21,14 @@ class Todo extends Model
 	public function project() {
 		return $this->belongsTo(Project::class);
 	}
+
+	public function isComplete() {
+		return !is_null($this->completed_at);
+	}
+
+	public function markAsCompleted() {
+		$this->completed = true;
+		$this->completed_at = \Carbon\Carbon::now();
+		$this->save();
+	}
 }

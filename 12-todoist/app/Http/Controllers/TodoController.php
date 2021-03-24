@@ -119,4 +119,19 @@ class TodoController extends Controller
 	{
 		//
 	}
+
+	/**
+	 * Mark a todo as completed
+	 *
+	 * POST `/projects/{project}/todos/{todo}/complete`
+	 *
+	 * @param Project $project
+	 * @param Todo $todo
+	 * @return void
+	 */
+	public function complete(Project $project, Todo $todo) {
+		$todo->markAsCompleted();
+
+		return redirect()->route('projects.show', ['project' => $project]);
+	}
 }
