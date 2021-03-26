@@ -59,7 +59,7 @@ class ArticleController extends Controller
 		]);
 
 		// attach selected tags to article
-		$article->tags()->attach($request->input('tag'));
+		$article->tags()->attach($request->input('tags'));
 
 		// redirect user to the newly created article
 		return redirect()->route('articles.show', ['article' => $article]);
@@ -118,7 +118,7 @@ class ArticleController extends Controller
 
 		// sync selected tags to article (remove those existing but not present
 		// in form request, add those not existing but present in form request)
-		$article->tags()->sync($request->input('tag'));
+		$article->tags()->sync($request->input('tags'));
 
 		// redirect user to the updated article
 		return redirect()->route('articles.show', ['article' => $article])->with('success', 'Article updated.');
