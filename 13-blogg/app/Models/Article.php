@@ -25,4 +25,13 @@ class Article extends Model
 	public function author() {
 		return $this->belongsTo(User::class);
 	}
+
+	/**
+	 * Get the Tags that this Article is associated with.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function tags() {
+		return $this->belongsToMany(Tag::class);
+	}
 }
