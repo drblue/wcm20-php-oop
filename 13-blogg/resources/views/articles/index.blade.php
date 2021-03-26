@@ -13,11 +13,21 @@
 	@foreach($articles as $article)
 		<article class="card">
 			<div class="card-body">
-				<h5 class="card-title"><a href="{{ route('articles.show', ['article' => $article]) }}">{{ $article->title }}</a></h5>
+				<h2 class="card-title h5"><a href="{{ route('articles.show', ['article' => $article]) }}">{{ $article->title }}</a></h2>
 				<div class="metadata">
 					<ul class="list-inline">
 						<li class="list-inline-item">Date: {{ $article->created_at }}</li>
 						<li class="list-inline-item">Author: {{ $article->author->name }}</li>
+						<li class="list-inline-item">
+							Tags:
+							{{
+								$article->tags->map(
+									function($tag) {
+										return $tag->name;
+									}
+								)->implode(", ")
+							}}
+						</li>
 					</ul>
 				</div>
 

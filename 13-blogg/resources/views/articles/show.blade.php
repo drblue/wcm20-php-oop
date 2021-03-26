@@ -5,7 +5,7 @@
 
 	<article class="card single-article">
 		<div class="card-body">
-			<h5 class="card-title">{{ $article->title }}</h5>
+			<h2 class="card-title h5">{{ $article->title }}</h2>
 			<div class="metadata">
 				<ul class="list-inline">
 					<li class="list-inline-item">Date: {{ $article->created_at }}</li>
@@ -22,6 +22,17 @@
 			<div class="content">
 				<p>{{ str_replace('\n', '<br>', $article->content) }}</p>
 			</div>
+
+			<hr />
+
+			<p>
+				<h3 class="h6">Tags:</h3>
+				<ul class="list-inline">
+					@foreach ($article->tags as $tag)
+						<li class="list-inline-item">{{ $tag->name }}</li>
+					@endforeach
+				</ul>
+			</p>
 
 			<!-- check if someone is logged in, and if so, check if the authenticated user is the same as the articles author -->
 			@auth
