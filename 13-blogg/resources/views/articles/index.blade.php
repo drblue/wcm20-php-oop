@@ -20,13 +20,13 @@
 						<li class="list-inline-item">Author: {{ $article->author->name }}</li>
 						<li class="list-inline-item">
 							Tags:
-							{{
+							{!!
 								$article->tags->map(
 									function($tag) {
-										return $tag->name;
+										return '<a href="/articles/tags/' . $tag->id . '">' . $tag->name . '</a>';
 									}
 								)->implode(", ")
-							}}
+							!!}
 						</li>
 					</ul>
 				</div>

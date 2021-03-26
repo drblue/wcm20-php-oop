@@ -86,7 +86,10 @@ class ArticleController extends Controller
 	{
 		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to edit this article.');
 
-		return view('articles/edit', ['article' => $article]);
+		return view('articles/edit', [
+			'article' => $article,
+			'tags' => Tag::orderBy('name')->get(),
+		]);
 	}
 
 	/**
@@ -98,18 +101,26 @@ class ArticleController extends Controller
 	 */
 	public function update(Request $request, Article $article)
 	{
+		// bail if no user is logged in
 		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to edit this article.');
 
+		// fail validation if no title is set
 		if (!$request->filled('title')) {
 			return redirect()->back()->with('warning', 'Please enter a title for the article.');
 		}
 
+		// update article with form content
 		$article->update([
 			'title' => $request->input('title'),
 			'excerpt' => $request->input('excerpt'),
 			'content' => $request->input('content'),
 		]);
 
+		// sync selected tags to article (remove those existing but not present
+		// in form request, add those not existing but present in form request)
+		$article->tags()->sync($request->input('tag'));
+
+		// redirect user to the updated article
 		return redirect()->route('articles.show', ['article' => $article])->with('success', 'Article updated.');
 	}
 

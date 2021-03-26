@@ -26,6 +26,17 @@
 					<textarea id="content" name="content" class="form-control" rows="10">{{ $article->content }}</textarea>
 				</div>
 
+				<fieldset class="mb-3">
+					<legend>Tags</legend>
+
+					@foreach($tags as $tag)
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="tag_{{ $tag->id }}" name="tag[]" value="{{ $tag->id }}" @if($article->tags->contains($tag)) checked @endif>
+							<label class="form-check-label" for="tag_{{ $tag->id }}">{{ $tag->name }}</label>
+						</div>
+					@endforeach
+				</fieldset>
+
 				<button type="submit" class="btn btn-success w-100">Update</button>
 			</form>
 		</div>
