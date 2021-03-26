@@ -1,7 +1,14 @@
 @extends('layouts/app')
 
 @section('content')
-	<h1>Articles</h1>
+	<div class="d-flex justify-content-between">
+		<h1 class="mb-4">Articles</h1>
+		<div class="actions">
+			@auth
+				<a href="{{ route('articles.create') }}" class="btn btn-success">Create new article</a>
+			@endauth
+		</div>
+	</div>
 
 	@foreach($articles as $article)
 		<article class="card">

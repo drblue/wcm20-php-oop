@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('content')
-	<h1>Edit an Article</h1>
+	<h1 class="mb-4">Edit an Article</h1>
 
 	<div class="card">
 		<div class="card-body">

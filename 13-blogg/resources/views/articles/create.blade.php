@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('content')
-	<h1>Create a new Article</h1>
+	<h1 class="mb-4">Create a new Article</h1>
 
 	<div class="card">
 		<div class="card-body">
@@ -24,6 +24,17 @@
 					<label for="content" class="form-label">Content</label>
 					<textarea id="content" name="content" class="form-control" rows="10"></textarea>
 				</div>
+
+				<fieldset class="mb-3">
+					<legend>Tags</legend>
+
+					@foreach($tags as $tag)
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="tag_{{ $tag->id }}" name="tag[]" value="{{ $tag->id }}">
+							<label class="form-check-label" for="tag_{{ $tag->id }}">{{ $tag->name }}</label>
+						</div>
+					@endforeach
+				</fieldset>
 
 				<button type="submit" class="btn btn-success w-100">Create</button>
 			</form>

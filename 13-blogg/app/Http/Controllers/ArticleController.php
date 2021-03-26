@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,9 @@ class ArticleController extends Controller
 	{
 		abort_unless(Auth::check(), 401, 'You have to be logged in to create an article.');
 
-		return view('articles/create');
+		return view('articles/create', [
+			'tags' => Tag::orderBy('name')->get(),
+		]);
 	}
 
 	/**
@@ -40,18 +43,25 @@ class ArticleController extends Controller
 	 */
 	public function store(Request $request)
 	{
+		// bail if no user is logged in
 		abort_unless(Auth::check(), 401, 'You have to be logged in to create an article.');
 
+		// fail validation if no title is set
 		if (!$request->filled('title')) {
 			return redirect()->back()->with('warning', 'Please enter a title for the article.');
 		}
 
+		// create article with authenticated user as author
 		$article = Auth::user()->articles()->create([
 			'title' => $request->input('title'),
 			'excerpt' => $request->input('excerpt'),
 			'content' => $request->input('content'),
 		]);
 
+		// attach selected tags to article
+		$article->tags()->attach($request->input('tag'));
+
+		// redirect user to the newly created article
 		return redirect()->route('articles.show', ['article' => $article]);
 	}
 
@@ -112,6 +122,8 @@ class ArticleController extends Controller
 	public function destroy(Article $article)
 	{
 		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to delete this article.');
+
+		$article->tags()->sync([]);
 
 		$article->delete();
 
