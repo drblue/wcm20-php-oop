@@ -17,7 +17,10 @@ class ArticleController extends Controller
 	public function index()
 	{
 		return view('articles/index', [
-			'articles' => Article::all(),
+			// 'articles' => Article::all(),
+			// 'articles' => Article::with('author')->get(),
+			// 'articles' => Article::with('tags')->get(),
+			'articles' => Article::with(['author', 'tags'])->get(),
 		]);
 	}
 
