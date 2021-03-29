@@ -10750,6 +10750,17 @@ article .actions > *:last-child {
   margin-right: 0;
 }
 
+/**
+ * Button styles
+ */
 .btn-primary {
   color: #fff;
+}
+
+/**
+ * Layout styles
+ */
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
 }

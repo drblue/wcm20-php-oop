@@ -9,7 +9,5 @@
 
 // App styles
 @import 'articles';
-
-.btn-primary {
-	color: $white;
-}
+@import 'buttons';
+@import 'layout';

@@ -44,6 +44,10 @@
 		</article>
 	@endforeach
 
+	<nav class="pagination-wrapper" aria-label="Article pagination links">
+		{{ $articles->onEachSide(2)->links() }}
+	</nav>
+
 	@auth
 		<div class="mt-4">
 			<a href="/articles/create" class="btn btn-primary">Create a new Article</a>
