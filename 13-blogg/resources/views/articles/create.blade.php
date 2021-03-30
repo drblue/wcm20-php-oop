@@ -10,29 +10,28 @@
 			<form class="form" action="{{ route('articles.store') }}" method="POST">
 				@csrf
 
-				@if ($errors->any())
-					<div class="alert alert-danger">
-						<ul>
-							@foreach($errors->all() as $error)
-								<li>{{ $error }}</li>
-							@endforeach
-						</ul>
-					</div>
-				@endif
-
 				<div class="mb-3">
 					<label for="title" class="form-label">Title</label>
-					<input type="text" id="title" name="title" class="form-control" placeholder="Enter the title of your article" value="{{ old('title') }}" required>
+					<input type="text" id="title" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Enter the title of your article" value="{{ old('title') }}" required>
+					@error('title')
+						<div id="title" class="validation-error">{{ $message }}</div>
+					@enderror
 				</div>
 
 				<div class="mb-3">
 					<label for="excerpt" class="form-label">Excerpt</label>
-					<textarea id="excerpt" name="excerpt" class="form-control">{{ old('excerpt') }}</textarea>
+					<textarea id="excerpt" name="excerpt" class="form-control @error('excerpt') is-invalid @enderror">{{ old('excerpt') }}</textarea>
+					@error('excerpt')
+						<div id="excerpt" class="validation-error">{{ $message }}</div>
+					@enderror
 				</div>
 
 				<div class="mb-3">
 					<label for="content" class="form-label">Content</label>
-					<textarea id="content" name="content" class="form-control" rows="10">{{ old('content') }}</textarea>
+					<textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror" rows="10">{{ old('content') }}</textarea>
+					@error('content')
+						<div id="content" class="validation-error">{{ $message }}</div>
+					@enderror
 				</div>
 
 				<fieldset class="mb-3">
@@ -44,6 +43,9 @@
 							<label class="form-check-label" for="tag_{{ $tag->id }}">{{ $tag->name }}</label>
 						</div>
 					@endforeach
+					@error('tags')
+						<div id="tags" class="validation-error">{{ $message }}</div>
+					@enderror
 				</fieldset>
 
 				<button type="submit" class="btn btn-success w-100">Create</button>

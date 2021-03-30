@@ -48,8 +48,10 @@ class ArticleController extends Controller
 
 		// validate request
 		$request->validate([
-			'title' => 'required|min:5|max:10',
+			'title' => 'required|min:5',
+			'excerpt' => 'nullable|min:10',
 			'content' => 'required',
+			'tags' => 'exists:tags,id'
 		]);
 
 		// create article with authenticated user as author

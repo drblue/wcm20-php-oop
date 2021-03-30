@@ -10758,6 +10758,14 @@ article .actions > *:last-child {
 }
 
 /**
+ * Form styles
+ */
+.validation-error {
+  color: #e3342f;
+  font-size: small;
+}
+
+/**
  * Layout styles
  */
 .pagination-wrapper {
