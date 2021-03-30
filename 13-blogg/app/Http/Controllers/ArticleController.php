@@ -46,10 +46,11 @@ class ArticleController extends Controller
 		// bail if no user is logged in
 		abort_unless(Auth::check(), 401, 'You have to be logged in to create an article.');
 
-		// fail validation if no title is set
-		if (!$request->filled('title')) {
-			return redirect()->back()->with('warning', 'Please enter a title for the article.');
-		}
+		// validate request
+		$request->validate([
+			'title' => 'required|min:5|max:10',
+			'content' => 'required',
+		]);
 
 		// create article with authenticated user as author
 		$article = Auth::user()->articles()->create([

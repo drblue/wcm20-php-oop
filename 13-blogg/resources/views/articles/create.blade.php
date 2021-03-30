@@ -10,19 +10,29 @@
 			<form class="form" action="{{ route('articles.store') }}" method="POST">
 				@csrf
 
+				@if ($errors->any())
+					<div class="alert alert-danger">
+						<ul>
+							@foreach($errors->all() as $error)
+								<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+
 				<div class="mb-3">
 					<label for="title" class="form-label">Title</label>
-					<input type="text" id="title" name="title" class="form-control" placeholder="Enter the title of your article" required>
+					<input type="text" id="title" name="title" class="form-control" placeholder="Enter the title of your article" value="{{ old('title') }}" required>
 				</div>
 
 				<div class="mb-3">
 					<label for="excerpt" class="form-label">Excerpt</label>
-					<textarea id="excerpt" name="excerpt" class="form-control"></textarea>
+					<textarea id="excerpt" name="excerpt" class="form-control">{{ old('excerpt') }}</textarea>
 				</div>
 
 				<div class="mb-3">
 					<label for="content" class="form-label">Content</label>
-					<textarea id="content" name="content" class="form-control" rows="10"></textarea>
+					<textarea id="content" name="content" class="form-control" rows="10">{{ old('content') }}</textarea>
 				</div>
 
 				<fieldset class="mb-3">
