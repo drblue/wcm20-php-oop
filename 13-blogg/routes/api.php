@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\ArticleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// /api/v1/articles
+Route::resource('v1/articles', ArticleController::class);
