@@ -8,7 +8,13 @@
 			<h2 class="card-title h5">{{ $article->title }}</h2>
 			<div class="metadata">
 				<ul class="list-inline">
-					<li class="list-inline-item">Date: {{ $article->created_at }}</li>
+					<li class="list-inline-item">
+						Date: <time
+							datetime="{{ $article->created_at->toIso8601String() }}"
+							title="{{ $article->created_at }}">
+								{{ $article->created_at->diffForHumans() }}
+						</time>
+					</li>
 					<li class="list-inline-item">Author: {{ $article->author->name }}</li>
 				</ul>
 			</div>

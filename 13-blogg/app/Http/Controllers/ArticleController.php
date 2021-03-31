@@ -17,7 +17,7 @@ class ArticleController extends Controller
 	public function index()
 	{
 		return view('articles/index', [
-			'articles' => Article::with(['author', 'tags'])->paginate(10),
+			'articles' => Article::with(['author', 'tags'])->latest()->paginate(10),
 		]);
 	}
 

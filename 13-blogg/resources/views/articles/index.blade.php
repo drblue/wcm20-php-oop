@@ -16,7 +16,13 @@
 				<h2 class="card-title h5"><a href="{{ route('articles.show', ['article' => $article]) }}">{{ $article->title }}</a></h2>
 				<div class="metadata">
 					<ul class="list-inline">
-						<li class="list-inline-item">Date: {{ $article->created_at }}</li>
+						<li class="list-inline-item">
+							Date: <time
+								datetime="{{ $article->created_at->toIso8601String() }}"
+								title="{{ $article->created_at }}">
+									{{ $article->created_at->diffForHumans() }}
+							</time>
+						</li>
 						<li class="list-inline-item">Author: {{ $article->author->name }}</li>
 						<li class="list-inline-item">
 							Tags:
@@ -39,7 +45,14 @@
 					@endif
 				</p>
 
-				<a href="{{ route('articles.show', ['article' => $article]) }}" class="btn btn-primary">Read more &raquo;</a>
+				<div class="actions">
+					<a href="{{ route('articles.show', ['article' => $article]) }}" class="btn btn-primary">Read more &raquo;</a>
+					@auth
+						@if(Illuminate\Support\Facades\Auth::user()->id === $article->author->id)
+							<a href="{{ route('articles.edit', ['article' => $article]) }}" class="btn btn-warning">Edit article</a>
+						@endif
+					@endauth
+				</div>
 			</div>
 		</article>
 	@endforeach
