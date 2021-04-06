@@ -13,7 +13,7 @@
 	@foreach($articles as $article)
 		<article class="card">
 			<div class="card-body">
-				<h2 class="card-title h5"><a href="{{ route('articles.show', ['article' => $article]) }}">{{ $article->title }}</a></h2>
+				<h2 class="card-title h5"><a href="{{ route('articles.show', ['article' => $article->slug]) }}">{{ $article->title }}</a></h2>
 				<div class="metadata">
 					<ul class="list-inline">
 						<li class="list-inline-item">
@@ -46,10 +46,10 @@
 				</p>
 
 				<div class="actions">
-					<a href="{{ route('articles.show', ['article' => $article]) }}" class="btn btn-primary">Read more &raquo;</a>
+					<a href="{{ route('articles.show', ['article' => $article->slug]) }}" class="btn btn-primary">Read more &raquo;</a>
 					@auth
 						@if(Illuminate\Support\Facades\Auth::user()->id === $article->author->id)
-							<a href="{{ route('articles.edit', ['article' => $article]) }}" class="btn btn-warning">Edit article</a>
+							<a href="{{ route('articles.edit', ['article' => $article->slug]) }}" class="btn btn-warning">Edit article</a>
 						@endif
 					@endauth
 				</div>

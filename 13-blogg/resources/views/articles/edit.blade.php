@@ -7,7 +7,7 @@
 		<div class="card-body">
 			<h5 class="card-title">Edit Article</h5>
 
-			<form class="form" action="{{ route('articles.update', ['article' => $article]) }}" method="POST">
+			<form class="form" action="{{ route('articles.update', ['article' => $article->slug]) }}" method="POST">
 				@csrf
 				@method('PUT')
 

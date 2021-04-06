@@ -65,17 +65,19 @@ class ArticleController extends Controller
 		$article->tags()->attach($request->input('tags'));
 
 		// redirect user to the newly created article
-		return redirect()->route('articles.show', ['article' => $article]);
+		return redirect()->route('articles.show', ['article' => $article->slug]);
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Models\Article  $article
+	 * @param  string  $slug
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Article $article)
+	public function show($slug)
 	{
+		$article = $this->getArticleBySlug($slug);
+
 		return view('articles/show', ['article' => $article]);
 	}
 
@@ -85,8 +87,10 @@ class ArticleController extends Controller
 	 * @param  \App\Models\Article  $article
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(Article $article)
+	public function edit($slug)
 	{
+		$article = $this->getArticleBySlug($slug);
+
 		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to edit this article.');
 
 		return view('articles/edit', [
@@ -102,8 +106,10 @@ class ArticleController extends Controller
 	 * @param  \App\Models\Article  $article
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Article $article)
+	public function update(Request $request, $slug)
 	{
+		$article = $this->getArticleBySlug($slug);
+
 		// bail if no user is logged in
 		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to edit this article.');
 
@@ -124,7 +130,7 @@ class ArticleController extends Controller
 		$article->tags()->sync($request->input('tags'));
 
 		// redirect user to the updated article
-		return redirect()->route('articles.show', ['article' => $article])->with('success', 'Article updated.');
+		return redirect()->route('articles.show', ['article' => $article->slug])->with('success', 'Article updated.');
 	}
 
 	/**
@@ -133,8 +139,10 @@ class ArticleController extends Controller
 	 * @param  \App\Models\Article  $article
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Article $article)
+	public function destroy($slug)
 	{
+		$article = $this->getArticleBySlug($slug);
+
 		abort_unless(Auth::check() && Auth::user()->id === $article->author->id, 401, 'You have to be logged in as the author to delete this article.');
 
 		$article->tags()->sync([]);
@@ -142,5 +150,9 @@ class ArticleController extends Controller
 		$article->delete();
 
 		return redirect()->route('articles.index')->with('success', 'Article has been deleted');
+	}
+
+	public function getArticleBySlug($slug) {
+		return Article::where('slug', $slug)->firstOrFail();
 	}
 }
